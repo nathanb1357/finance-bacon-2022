@@ -6,6 +6,7 @@
 
 ## General Info
 * Hi my name is Nathan. I have no idea what I'm doing
+* Hi my name is Ben. I'm excited about this project because...
 	
 ## Technologies
 Technologies used for this project:
