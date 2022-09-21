@@ -1,11 +1,11 @@
-## My Web Application (Add your Title here)
+## Finance Compiler
 
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
 
 ## General Info
-This browser based web application to ...
+* Hi my name is Nathan. I have no idea what I'm doing
 	
 ## Technologies
 Technologies used for this project:
