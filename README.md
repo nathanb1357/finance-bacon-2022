@@ -6,7 +6,12 @@
 
 ## General Info
 This browser based web application to ...
+
 Hi my name is Charles. I'm exited about this project because
+
+Hi my name is Ben. I'm excited about this project because...
+	
+
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
