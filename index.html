@@ -35,10 +35,10 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="./images/FiBa_logo_app.png" height="36">
-            Charles' Hiking App
-        </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="./images/FiBa_logo_app.png" height="36" style="box-shadow: 0.5px 0.5px white;">
+            &nbsp; Finance Bacon
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,39 +47,33 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">About</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Settings
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Notification Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Currency Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Budget Editor</a></li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <span class="navbar-text">
+              Your Profile
+            </span>
           </div>
         </div>
       </nav>
 
       <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="./images/FiBa_logo_app.png" alt="" width="72" height="57">
+        <img class="d-block mx-auto mb-4" src="./images/FiBa_logo_app.png" alt="" height="70">
         <h1 class="display-5 fw-bold">Finance Bacon</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">Saving your bacon since 2022</p>
+          <p class="lead mb-4">Saving your bacon since 2022.</p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Sign up</button>
-            <button type="button" class="btn btn-danger btn-lg px-4">Find Bacon!</button>
+            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Log In</button>
+            <button type="button" class="btn btn-secondary btn-lg px-4">Sign Up</button>
           </div>
         </div>
       </div>
@@ -88,28 +82,40 @@
         <div class="card">
           <img src="./images/hike1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title">Track Your Spending</h5>
+            <p class="card-text">Whenever you spend money, Finance Bacon will instantly create graphs and charts to help you keep track of your spending in one place.</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
         <div class="card">
           <img src="./images/hike2.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title">Track Your Income</h5>
+            <p class="card-text">Finance Bacon will help you keep track of where your money came from and exactly how much to spend per month.</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
         <div class="card">
           <img src="./images/hike3.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <h5 class="card-title">Save More Money</h5>
+            <p class="card-text">Using our budget tools, you can easily set spending limits for yourself and get notified when you are close to going over the spending limit.</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div>
       </div>
+
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Your Graphs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Your Timeline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">New</a>
+        </li>
+      </ul>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
