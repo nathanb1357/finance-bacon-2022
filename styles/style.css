@@ -13,7 +13,7 @@
 .offcanvas-body{display:flex;flex-grow:0;padding:0;overflow-y:visible}
 
 #hero{
-    background-image: url("/images/bacon_background.jpg");
+    background-image: url("../images/bacon_background.jpg");
     background-size: cover;
     margin-top: 0;
     margin-bottom: 0;
