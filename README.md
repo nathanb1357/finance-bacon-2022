@@ -14,6 +14,7 @@ Technologies used for this project:
 * HTML, CSS
 * JavaScript
 * Bootstrap 
+* Firebase
 * ...
 	
 ## Content
@@ -33,6 +34,8 @@ It has the following subfolders and files:
     /blah.js                 # 
 ├── styles                   # Folder for styles
     /blah.css                # 
+├── text                     # Folder for html templates
+    /blah.html
 
 Firebase hosting files: 
 ├── .firebaserc...
