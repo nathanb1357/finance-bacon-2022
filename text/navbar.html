@@ -1,20 +1,46 @@
 <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid" style="margin-bottom:0;">
-      <a class="navbar-brand" href="#">
-        <img src="./images/FiBa_logo.png" alt="Finance Bacon" height="30">
-      </a>
-    </div>
-    <div class="navbar-collapse" style="display: inline; margin-bottom:0;" id="navbarNavDropdown">
+  <div class="container-fluid" style="margin-bottom:0;">
+    <a class="navbar-brand" href="#">
+      <!-- <img src="./images/FiBa_logo.png" alt="Finance Bacon" height="30"> -->
+    </a>
+    <div class="navbar-collapse" style="display: inline; margin-bottom:0;" id="navbarNavDropdownNotification">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" style="color:black;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" style="color:black;" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             <i class="bi bi-list fs-2"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item">Log In</a></li>
-            <li><a class="dropdown-item">Sign Up</a></li>
+            <li><a class="dropdown-item">Notification Settings</a></li>
+            <li><a class="dropdown-item">Notifications</a></li>
+              <input type="checkbox" id="switch" class="checkbox" />
+              <label for="switch" class="toggle">
+  
+                
+            
           </ul>
-        </li>       
+        </li>
       </ul>
     </div>
-  </nav>
+  </div>
+  <div class="navbar-collapse" style="display: inline; margin-bottom:0;" id="navbarNavDropdownProfile">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="color:black;" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <i class="bi bi-list fs-2"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item">Profile Setting</a></li>
+          <li><a class="dropdown-item">Sign out</a></li>
+           
+
+              
+          
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  
+</nav>
