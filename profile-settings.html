@@ -40,38 +40,44 @@
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
-    <br><br><br><br>
     <div id="profile">
         <div id="profileHeading">
             <h1>Profile Settings</h1>
             <p>Customize your profile.</p>
+            <hr>
             <img id="profilePicture" src="./images/MHARTI.jpg" alt="Your Profile Picture">
         </div>
-        <hr>
         <div id="profileBody">
             <div class="mb-3 col-md-4">
                 <label class="form-label" for="customFile">Change Profile Picture</label>
                 <input type="file" class="form-control" id="customFile">
             </div>
-            <br>
-            <div class="form-floating col-md-4">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="New Password">
-                <label for="floatingPassword">New Password</label>
-            </div>
-            <br>
-            <div class="form-floating col-md-4">
-                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm New Password">
-                <label for="floatingPasswordConfirm">Confirm New Password</label>
+            <hr>
+            <div class="mb-3">
+                <select class="form-select" aria-label="">
+                  <option selected="">Currency options</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
             </div>
             <hr>
-            <br>
             <div class="form-floating mb-3 col-md-4">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="New Password">
+                <label for="floatingPassword" class="form-label">New Password</label>
+            </div>
+            <div class="form-floating mb-3 col-md-4">
+                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm New Password">
+                <label for="floatingPasswordConfirm" class="form-label">Confirm New Password</label>
+            </div>
+            <hr>
+            <div class="form-floating mb-3 col-md-4">
+                <input type="email" class="form-control" id="changeEmail" placeholder="Change Email Address">
                 <label for="changeEmail" class="form-label">Change Email Address</label>
-                <input type="email" class="form-control" id="changeEmail" aria-describedby="emailHelp">
             </div>
             <div class="form-floating mb-3 col-md-4">
                 <input type="tel" class="form-control" id="floatingInput" placeholder="604-555-5555">
-                <label for="floatingInput">Phone Number</label>
+                <label for="floatingInput" class="form-label">Phone Number</label>
             </div>
         </div>
     </div>
