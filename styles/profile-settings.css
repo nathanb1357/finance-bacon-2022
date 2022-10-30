@@ -31,12 +31,18 @@
 /* Custom CSS Goes Here! */
 /*************************/
 #profile{
-    margin: 5%
+    margin: 5%;
 }
 
 #profileHeading{
     text-align: center;
 }
+
+#profilePicture{
+    max-width: 150px;
+    max-height: 150px;
+}
+
 
 #profileBody{
     text-align: left;
