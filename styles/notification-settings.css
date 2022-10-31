@@ -31,7 +31,10 @@
 /* Custom CSS Goes Here! */
 /*************************/
 #notifications{
-    margin: 5%
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 100px;
 }
 
 #notificationsHeading{
