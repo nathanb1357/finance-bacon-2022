@@ -5,12 +5,35 @@ function insertName() {
             // Do something for the currently logged-in user here: 
             console.log(user.uid);
             console.log(user.displayName);
-            user_Name = user.displayName;
-            document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
+            username = user.displayName;
+            document.getElementById("name-goes-here").innerText = username;    //using javascript
         } else {
             // No user is signed in.
         }
     });
 }
-
 insertName(); //run the function
+
+
+// Checks if user has a budget collection and if they don't display a budget link
+function budgetLink(){
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if a user is signed in:
+        if (user) {
+            db.collection("users").doc(user.uid).collection("budget").limit(1).get()
+                .then(sub => {
+                    // User does not have budget
+                    if (sub.docs.length == 0) {
+                        console.log('Budget does not exist!');
+                    // User had a budget
+                    } else {
+                        console.log('Budget exists!')
+                    }
+                })
+        } else {
+            window.location.assign("index.html");    // No user is signed in.
+        }
+    });
+}
+
+budgetLink();
