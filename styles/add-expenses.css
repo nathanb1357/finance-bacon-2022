@@ -1,4 +1,6 @@
+/*******************************/
 /* BOOTSTRAP CSS (DO NOT EDIT) */
+/*******************************/
 .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: flex-start
@@ -82,19 +84,28 @@
 /*************************/
 
 
-#Expense{
+#expense {
     margin-top: 100px;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 100px;
 }
+
+#expenseForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+
+
 #currencyHeading {
    text-align: center; 
 }
 .dropdown-currency{
 margin-right: 250px;
 margin-left: 20px;
-
 
 }
 #submit{

@@ -43,66 +43,65 @@
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
-    <div id="Expense">
+    <div id="expense">
         <div id="currencyHeading">
             <h1>Add Expense</h1>
-
             <hr>
             <p>Expense 1</p>
-
         </div>
-
-        <div class="dropdown-currency">
-            <p>Currency</p>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCurrency"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                $
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
-                <li><a class="dropdown-item" href="#">$ (CAD)</a></li>
-                <li><a class="dropdown-item" href="#">$ (USD)</a></li>
-                <li><a class="dropdown-item" href="#">¥ (JPY)</a></li>
-            </ul>
-        </div>
-
-
-        <div id="amount">
-            <p>Amount</p>
-            <input type="text" name="amount" placeholder="$0.00" pattern="{1-5}" required>
-        </div>
+        <form id="expenseForm">
+            <div class="dropdown-currency">
+                <p>Currency</p>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCurrency"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    $
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
+                    <li><a class="dropdown-item" href="#">$ (CAD)</a></li>
+                    <li><a class="dropdown-item" href="#">$ (USD)</a></li>
+                    <li><a class="dropdown-item" href="#">¥ (JPY)</a></li>
+                </ul>
+            </div>
 
 
-        <div class="dropdown-top">
-            <p>Type of Payment</p>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTop" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Debit Card(TD)
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownTop">
-                <li><a class="dropdown-item" href="#">Debit Card (TD)</a></li>
-                <li><a class="dropdown-item" href="#">Credit CArd (VISA)</a></li>
-                <li><a class="dropdown-item" href="#">Cash</a></li>
-            </ul>
-        </div>
+            <div id="amount">
+                <p>Amount</p>
+                <input type="text" name="amount" placeholder="$0.00" pattern="{1-5}" required>
+            </div>
 
 
-        <div class="dropdown-cop">
-            <p>Category of Payment</p>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCop" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Utilities
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownCop">
-                <li><a class="dropdown-item" href="#">Utilities</a></li>
-                <li><a class="dropdown-item" href="#">Entertainment</a></li>
-                <li><a class="dropdown-item" href="#">Food</a></li>
-            </ul>
+            <div class="dropdown-top">
+                <p>Type of Payment</p>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTop" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Debit Card(TD)
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownTop">
+                    <li><a class="dropdown-item" href="#">Debit Card (TD)</a></li>
+                    <li><a class="dropdown-item" href="#">Credit CArd (VISA)</a></li>
+                    <li><a class="dropdown-item" href="#">Cash</a></li>
+                </ul>
+            </div>
 
-        </div>
-        <div id="submit">
-            <button type="button" class="btn btn-outline-secondary">Submit</button>
-            <button type="button" class="btn btn-outline-secondary">Cancle</button>
-        </div>
+
+            <div class="dropdown-cop">
+                <p>Category of Payment</p>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCop" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Utilities
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownCop">
+                    <li><a class="dropdown-item" href="#">Utilities</a></li>
+                    <li><a class="dropdown-item" href="#">Entertainment</a></li>
+                    <li><a class="dropdown-item" href="#">Food</a></li>
+                </ul>
+
+            </div>
+            <div id="submit">
+                <button type="button" class="btn btn-outline-secondary">Submit</button>
+                <button type="button" class="btn btn-outline-secondary">Cancle</button>
+            </div>
+        </form>
 
     </div>
     <!-- Footer Template -->
