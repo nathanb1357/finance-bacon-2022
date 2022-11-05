@@ -24,7 +24,8 @@ function budgetLink(){
                 .then(sub => {
                     // User does not have budget
                     if (sub.docs.length == 0) {
-                        console.log('Budget does not exist!');
+                        console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));
+                        console.log($('#footerPlaceholder').html(''));
                     // User had a budget
                     } else {
                         console.log('Budget exists!')
