@@ -1,18 +1,14 @@
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+let ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-var uiConfig = {
+let uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-        // If the user is a "brand new" user, then create a new "user" in your own database.
-        // Assign this user with the name and email provided.
-        // Before this works, you must enable "Firestore" from the firebase console.
-        // The Firestore rules must allow the user to write. 
-        var user = authResult.user;                            // get the user object from the Firebase authentication database
+        let user = authResult.user;                            // get the user object from the Firebase authentication database
         if (authResult.additionalUserInfo.isNewUser) {         //if new user
             db.collection("users").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
                     name: user.displayName,                  
-                    email: user.email,     
+                    email: user.email,
                 }).then(function () {
                     console.log("New user added to firestore");
                     window.location.assign("home.html"); 
@@ -25,7 +21,6 @@ var uiConfig = {
         }
         return false;
     },
-
       // Hide the loader.
       uiShown: function() {
         document.getElementById('loader').style.display = 'none';
@@ -51,3 +46,4 @@ var uiConfig = {
   };
 
   ui.start('#firebaseui-auth-container', uiConfig);
+  

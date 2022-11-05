@@ -40,7 +40,7 @@
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
-    <div id="notifications">
+    <form id="notifications">
         <div id="notificationsHeading">
             <h1>Notification Settings</h1>
             <p>Customize the type of notifications you want to recieve.</p>
@@ -48,12 +48,7 @@
         <hr>
         <div id="notificationsBody">
             <div class="mb-3 form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="featuresAppUpdates" checked="">
-                <label class="form-check-label" for="featuresAppUpdates">Features & App Updates</label>
-            </div>
-            <hr>
-            <div class="mb-3 form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="overspendingWarning" checked="">
+                <input class="form-check-input" type="checkbox" id="overspendingWarning">
                 <label class="form-check-label" for="overspendingWarning">Overspending Warning</label>
             </div>
             <div id="overspendingOptions">
@@ -85,7 +80,8 @@
             </div>
             <hr>
         </div>
-    </div>
+        <input type="submit" name="submit" value="Submit">
+    </form>
 
     <!-- Footer Template -->
     <nav id="footerPlaceholder"></nav>

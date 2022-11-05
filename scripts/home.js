@@ -6,9 +6,9 @@ function insertName() {
             console.log(user.uid);
             console.log(user.displayName);
             username = user.displayName;
-            document.getElementById("name-goes-here").innerText = username;    //using javascript
+            document.getElementById("name-goes-here").innerText = username;
         } else {
-            // No user is signed in.
+            window.location.assign("index.html");    // No user is signed in.
         }
     });
 }
@@ -20,17 +20,17 @@ function budgetLink(){
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            db.collection("users").doc(user.uid).collection("budget").limit(1).get()
-                .then(sub => {
-                    // User does not have budget
-                    if (sub.docs.length == 0) {
-                        console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));
-                        console.log($('#footerPlaceholder').html(''));
-                    // User had a budget
-                    } else {
-                        console.log('Budget exists!')
-                    }
-                })
+            let currentUser = db.collection("users").doc(user.uid);
+            currentUser.collection("budget").limit(1).get().then(sub => {
+                // User does not have budget
+                if (sub.docs.length == 0) {
+                    console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));
+                    console.log($('#footerPlaceholder').html(''));
+                // User had a budget
+                } else {
+                    console.log('Budget exists!')
+                }
+            })
         } else {
             window.location.assign("index.html");    // No user is signed in.
         }
