@@ -47,45 +47,48 @@
         <div id="currencyHeading">
             <h1>Add Expense</h1>
             <hr>
-            <p>Expense 1</p>
+            <h4>Expense 01</h4>
         </div>
-        <form id="expenseForm">
+        <form id="expense-form">
             <div class="dropdown-currency">
-                <p>Currency</p>
+                <div style="margin-bottom: 10px">Currency</div>
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCurrency"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    $
+                    $ (CAD)
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
+                    <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
                     <li><a class="dropdown-item" href="#">$ (CAD)</a></li>
                     <li><a class="dropdown-item" href="#">$ (USD)</a></li>
                     <li><a class="dropdown-item" href="#">¥ (JPY)</a></li>
                 </ul>
             </div>
 
-            <div id="amount">
-                <p>Amount</p>
-                <input type="text" name="amount" placeholder="$0.00" pattern="{1-5}" required>
-            </div>
-
-            <div class="dropdown-top">
-                Type of Payment
-                <br>
+            <div class="dropdown-type">
+                <div style="margin-bottom: 10px">Payment Type</div>
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTop" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    Debit Card(TD)
+                    Debit Card (TD)
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownTop">
                     <li><a class="dropdown-item" href="#">Debit Card (TD)</a></li>
-                    <li><a class="dropdown-item" href="#">Credit CArd (VISA)</a></li>
+                    <li><a class="dropdown-item" href="#">Credit Card (VISA)</a></li>
                     <li><a class="dropdown-item" href="#">Cash</a></li>
                 </ul>
             </div>
 
-            <div class="dropdown-cop">
-                Category of Payment
-                <br>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCop" data-bs-toggle="dropdown"
+            <div class="amount">
+                <div style="margin-bottom: 10px">Amount</div>
+                <input type="text" name="amount" placeholder="$0.00" pattern="{0-9}" required>
+            </div>
+
+            <div class="date">
+                <div style="margin-bottom: 10px">Date</div>
+                <input type="text" name="amount" placeholder="Nov-05-2022" pattern="{A-Za-z0-9}" required>
+            </div>
+
+            <div class="dropdown-category">
+                <div style="margin-bottom: 10px">Payment Category</div>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCop" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     Utilities
                 </button>
@@ -94,13 +97,11 @@
                     <li><a class="dropdown-item" href="#">Entertainment</a></li>
                     <li><a class="dropdown-item" href="#">Food</a></li>
                 </ul>
+            </div>
 
-            </div>
             <div id="submit">
-                <input type="submit" value="Submit" name="submit" class="btn btn-outline-secondary">
-            </div>
-            <div id="cancel">
-                <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="margin:10px">
+                <button type="button" class="btn btn-light btn-outline-dark" style="margin:10px">Cancel</button>
             </div>
         </form>
 

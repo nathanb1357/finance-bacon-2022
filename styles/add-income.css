@@ -33,14 +33,14 @@
 /* Custom CSS Goes Here! */
 /*************************/
 
-#expense {
+#income {
     margin-top: 100px;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 100px;
 }
 
-#expense-form {
+#income-form {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: repeat(5, 1fr);
@@ -75,7 +75,7 @@
     margin: 10px;
 }
 
-.dropdown-category{
+.dropdown-source{
     grid-column: 2 / span 2;
     grid-row: 4;
     display: block;
