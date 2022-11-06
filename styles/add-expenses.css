@@ -83,7 +83,6 @@
 /* Custom CSS Goes Here! */
 /*************************/
 
-
 #expense {
     margin-top: 100px;
     margin-left: 5%;
@@ -92,36 +91,45 @@
 }
 
 #expenseForm {
+    box-sizing: content-box;
+    justify-items: center;
+    align-items: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 0.1fr);
+    grid-template-rows: repeat(4, 0.1fr);
 }
-
-
-
-
 
 #currencyHeading {
    text-align: center; 
 }
 .dropdown-currency{
-margin-right: 250px;
-margin-left: 20px;
+    grid-column: 2;
+    grid-row: 1;
 
-}
-#submit{
-    margin-bottom: 0%;
+    text-align: center;
 }
 #amount{
-    float: right;
-}
-.dropdown-cop{
-    float: right;
-    margin-top: 100px;
-}
-#submit{
-    margin-top: 300px;
+    grid-column: 3 / span 3;
+    grid-row: 1;
+
+    text-align: center;
 }
 .dropdown-top{
-    float: left;
-    margin-top: 100px;
+    grid-column: 3;
+    grid-row: 2;
+
+    margin-top: 10%;
+    text-align: center;
+}
+.dropdown-cop{
+    grid-column: 3 / span 2;
+    grid-row: 3;
+
+    margin-top: 10%;
+}
+#submit{
+    grid-column: 3 / span 2;
+    grid-row: 4;
+
+    margin-top: 10%;
 }
