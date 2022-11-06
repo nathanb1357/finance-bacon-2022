@@ -129,8 +129,8 @@
     grid-column: 2 / span 2;
     grid-row: 3;
 
-    text-align: center;
     margin-top: 5%;
+    text-align: center;
 }
 
 #submit{
