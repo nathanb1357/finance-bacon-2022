@@ -63,7 +63,6 @@
     overflow-y: visible
 }
 
-
 /*******************/
 /* Navbar template */
 /*******************/
@@ -78,7 +77,6 @@
     align-items: right;
 }
 
-
 /*************************/
 /* Custom CSS Goes Here! */
 /*************************/
@@ -91,45 +89,54 @@
 }
 
 #expenseForm {
-    box-sizing: content-box;
-    justify-items: center;
-    align-items: center;
     display: grid;
-    grid-template-columns: repeat(4, 0.1fr);
-    grid-template-rows: repeat(4, 0.1fr);
+    grid-template-columns: 1fr 0.1fr 0.1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: content-box;
+    align-items: center;
 }
 
 #currencyHeading {
    text-align: center; 
 }
+
 .dropdown-currency{
     grid-column: 2;
     grid-row: 1;
 
     text-align: center;
 }
+
 #amount{
-    grid-column: 3 / span 3;
+    grid-column: 3;
     grid-row: 1;
 
     text-align: center;
 }
+
 .dropdown-top{
-    grid-column: 3;
+    grid-column: 2 / span 2;
     grid-row: 2;
 
-    margin-top: 10%;
+    margin-top: 5%;
     text-align: center;
 }
+
 .dropdown-cop{
-    grid-column: 3 / span 2;
+    grid-column: 2 / span 2;
     grid-row: 3;
 
-    margin-top: 10%;
+    text-align: center;
+    margin-top: 5%;
 }
+
 #submit{
-    grid-column: 3 / span 2;
+    grid-column: 2 / span 2;
     grid-row: 4;
 
+    text-align: center;
     margin-top: 10%;
 }
