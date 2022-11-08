@@ -23,6 +23,21 @@
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
 }
+
 #nav-profile{
     align-items: right;
 }
+
+/**********************/
+/* Content goes here! */
+/**********************/
+#budget-new {
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 100px;
+}
+
+#budget-heading {
+    text-align: center; 
+ }
