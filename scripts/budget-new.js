@@ -6,11 +6,11 @@ function addBudget(){
             currentUser.collection("budget").doc("housing").set({
                 name: Housing,
                 percentage: 0.35
-            });
+            }, {merge: true});
         }
     });
 }
-
+addBudget();
 
 
 
