@@ -36,6 +36,15 @@
 </head>
 
 <body>
+    <!-- Category Template -->
+    <template id="budget-template">
+      <tr>
+        <td class="category-name">Placeholder</td>
+        <td class="category-percent">Placeholder</td>
+        <td>25%</td>
+      </tr>
+    </template>
+
     <!-- Navbar Template -->
     <nav id="navbarPlaceholder"></nav>
 
@@ -49,28 +58,15 @@
         <table class="table table-striped">
             <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Category</th>
               <th scope="col">Percentage of Budget</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry the Bird</td>
-              <td>25%</td>
-            </tr>
-            </tbody>
+            <tbody id="budget-group"></tbody>
+            <tfoot>
+              <td></td>
+              <td><a>Add a New Category</a></td>
+            </tfoot>
         </table>
     </div>
 
