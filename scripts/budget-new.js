@@ -1,3 +1,19 @@
+function addBudget(){
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if a user is signed in:
+        if (user) {
+            var currentUser = db.collection("users").doc(user.uid);
+            currentUser.collection("budget").doc("housing").set({
+                name: Housing,
+                percentage: 0.35
+            });
+        }
+    });
+}
+
+
+
+
 function getCategories() {
     let budgetTemplate = document.getElementById("budget-template");
     let budgetGroup = document.getElementById("budget-group");

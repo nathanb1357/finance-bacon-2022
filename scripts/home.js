@@ -37,16 +37,3 @@ function budgetLink(){
     });
 }
 budgetLink();
-
-function addBudget(){
-    firebase.auth().onAuthStateChanged(user => {
-        // Check if a user is signed in:
-        if (user) {
-            currentUser.collection("budget").add({
-                name: Entertainment,
-                percentage: 0.5,
-                ID: this.ID
-            });
-        }
-    });
-}
