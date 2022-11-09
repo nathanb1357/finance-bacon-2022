@@ -20,7 +20,7 @@ function budgetLink(){
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            let currentUser = db.collection("users").doc(user.uid);
+            var currentUser = db.collection("users").doc(user.uid);
             currentUser.collection("budget").limit(1).get().then(sub => {
                 // User does not have budget
                 if (sub.docs.length == 0) {
@@ -37,3 +37,16 @@ function budgetLink(){
     });
 }
 budgetLink();
+
+function addBudget(){
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if a user is signed in:
+        if (user) {
+            currentUser.collection("budget").add({
+                name: Entertainment,
+                percentage: 0.5,
+                ID: this.ID
+            });
+        }
+    });
+}
