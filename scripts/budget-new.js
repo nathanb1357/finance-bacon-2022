@@ -4,11 +4,14 @@ function addBudget(){
         if (user) {
             var currentUser = db.collection("users").doc(user.uid);
             currentUser.collection("budget").doc("housing").set({
-                name: Housing,
+                name: "Housing",
                 percentage: 0.35
-            }, {merge: true});
+            }, {merge: true})    
+            .then(() => {
+                console.log("Document succesfully written!");
+            });
         }
-    });
+    })
 }
 addBudget();
 
@@ -26,7 +29,7 @@ function getCategories() {
                 var categoryPercentage = doc.data().percentage; //gets the length field
                 let budgetRow = budgetTemplate.content.cloneNode(true);
                 budgetRow.querySelector('.category-name').innerHTML = categoryName;   //equiv getElementByClassName
-                budgetRow.querySelector('.category-percent').innerHTML = categoryID;  //equiv getElementByClassName
+                budgetRow.querySelector('.category-percent').innerHTML = categoryPercentage;  //equiv getElementByClassName
                 budgetGroup.appendChild(budgetRow);
             })
 
