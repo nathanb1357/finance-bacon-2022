@@ -40,4 +40,9 @@
 
 #budget-heading {
     text-align: center; 
- }
+}
+
+.category-edit {
+    color: blue !important;
+    text-decoration: underline;
+}
