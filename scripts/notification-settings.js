@@ -1,25 +1,22 @@
+var currentUser;
+var overspendWarn;
+var notif = document.getElementById("overspendingWarning").checked;
+
+//var overspendWarning = false;
+
 function notificationSettings() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            let currentUser = db.collection("users").doc(user.uid);
-            let check1 = document.getElementById("overspendingWarning").checked;
-            document.getElementById("overspendingWarning").addEventListener("click", (event) =>{
-                if (event.target.checked){
-                    check1 = true;
+            currentUser = db.collection("users").doc(user.uid);
+            currentUser.get().then(ovSpend => {
+                overspendWarn = ovSpend.data().overspendWarning
+                if (overspendWarn == true) {
+                    document.getElementById("overspendingWarning").checked = true;
+                    document.getElementById("overspendingOptions").disabled = false;
                 } else {
-                    check1 = false;
+                    document.getElementById("overspendingWarning").checked = false;
                 }
-            })
-            let check2 = document.getElementById("pushNotifications").checked;
-            let check3 = document.getElementById("emailNotifications").checked;
-            currentUser.onSnapshot((doc) => {
-                console.log("Current data: ", doc.data());
-                currentUser.set({
-                    overspendWarning: check1,
-                    notificationsPush: check2,
-                    notificationsEmail: check3
-                }, { merge: true })
             })
         } else {
             window.location.assign("index.html");    // No user is signed in.
@@ -27,3 +24,23 @@ function notificationSettings() {
     });
 }
 notificationSettings(); //run the function
+
+function overSpendToggle() {
+    if (overspendWarn == true) {
+        overspendWarn = false;
+        // In case something weird happens and checks go out of sync
+        document.getElementById("overspendingWarning").checked = false;
+        // Ghost options when disabled notifications
+        document.getElementById("overspendingOptions").disabled = true;
+        currentUser.update({
+            overspendWarning: false
+        })
+    } else if (overspendWarn == false) {
+        overspendWarn = true;
+        document.getElementById("overspendingWarning").checked = true;
+        document.getElementById("overspendingOptions").disabled = false;
+        currentUser.update({
+            overspendWarning: true
+        })
+    }
+}
