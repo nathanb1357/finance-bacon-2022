@@ -42,7 +42,52 @@
     text-align: center; 
 }
 
+.table {
+    display:table;
+}
+
+.thead {
+    display: table-header-group;
+    font-weight: bold;
+}
+
+.tbody {
+    display: table-row-group;
+}
+
+.tfoot {
+    display: table-footer-group;
+}
+
+.tr {
+    display:table-row;
+}
+
+.td {
+    display: table-cell;
+    text-align: justify;
+}
+
+.th {
+    display: table-cell;
+    text-align: justify;
+    border-bottom: 1px solid black;
+}
+
+.tf {
+    display: table-cell;
+    text-align: justify;
+    border-top: 1px solid black;
+    color: blue;
+    text-decoration: underline;
+}
+
 .category-edit {
-    color: blue !important;
+    color: blue;
+    text-decoration: underline;
+}
+
+.category-delete {
+    color: red;
     text-decoration: underline;
 }

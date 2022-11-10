@@ -38,11 +38,20 @@
 <body>
     <!-- Category Template -->
     <template id="budget-template">
-      <tr>
-        <td class="category-name">Placeholder</td>
-        <td class="category-percent">Placeholder</td>
-        <td class="category-edit" onclick="editCategory();">Edit</td>
-      </tr>
+      <form class="tr">
+        <span class="td category-name">Placeholder</span>
+        <span class="td category-percent">Placeholder</span>
+        <span class="td category-edit" onclick="editCategory();">Edit</span>
+        <span class="td category-delete" onclick="deleteCategory();">Delete</span>
+      </form>
+    </template>
+
+    <template id="edit-template">
+      <form class="tr">
+        <span class="td category-name"><input type="text" placeholder="Hello">Placeholder</span>
+        <span class="td category-percent">Placeholder</span>
+        <span class="td category-edit" onclick="editCategory();">Edit</span>
+      </form>
     </template>
 
     <!-- Navbar Template -->
@@ -51,24 +60,29 @@
     <!-- Content Goes Here! -->
     <div id="budget-new">
         <div id="budget-heading">
-            <h1>Create Your Budget</h1>
+            <h1>Add Expense Categories</h1>
             <p>Add premade and custom categories to your budget<br>and assign a percentage value for each category.</p>
             <hr>
         </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-              <th scope="col">Category</th>
-              <th scope="col">Percentage of Budget</th>
-            </tr>
-            </thead>
-            <tbody id="budget-group"></tbody>
-            <tfoot>
-              <td></td>
-              <td><a>Add a New Category</a></td>
-              <td></td>
-            </tfoot>
-        </table>
+        <div class="table table-striped">
+            <div class="thead">
+              <div class="tr">
+                <span class="th" scope="column">Category</span>
+                <span class="th" scope="column">Percentage of Budget</span>
+                <span class="th" scope="column"></span>
+                <span class="th" scope="column"></span>
+              </div>
+            </div>
+            <div class="tbody" id="budget-group"></div>
+            <div class="tfoot">
+              <div class="tr">
+                <span class="tf"></span>
+                <span class="tf">Add a Category</span>
+                <span class="tf"></span>
+                <span class="tf"></span>
+              </div>
+            </div>
+        </div>
     </div>
 
     <!---------------------------------------------->
