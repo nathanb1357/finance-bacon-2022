@@ -36,6 +36,10 @@
 </head>
 
 <body>
+    <template id="currency-template">
+        <option id="template-option"></option>
+    </template>
+
     <!-- Navbar Template -->
     <nav id="navbarPlaceholder"></nav>
 
@@ -53,12 +57,9 @@
                 <input type="file" class="form-control" id="customFile">
             </div>
             <hr>
-            <div class="mb-3 col-md-4">
-                <select class="form-select" aria-label="">
+            <div id = "currency-Options" class="mb-3 col-md-4">
+                <select id="currency-group" class="form-select" aria-label="">
                   <option selected="">Currency options</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
                 </select>
             </div>
             <hr>
@@ -90,8 +91,8 @@
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_TEAM14.js"></script>
-    <script src="./scripts/notification-settings.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/profile.js"></script>
 </body>
 
 </html>
