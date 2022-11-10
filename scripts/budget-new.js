@@ -50,5 +50,6 @@ function getCategories() {
 
 
 function editCategory() {
-
+    let budgetTemplate = document.getElementById("edit-template");
+    
 }
