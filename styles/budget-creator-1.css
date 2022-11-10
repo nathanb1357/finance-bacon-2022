@@ -78,6 +78,9 @@
     display: table-cell;
     text-align: justify;
     border-top: 1px solid black;
+}
+
+#add {
     color: blue;
     text-decoration: underline;
 }
@@ -90,4 +93,19 @@
 .category-delete {
     color: red;
     text-decoration: underline;
+}
+
+#add:hover {
+    cursor: pointer;
+    text-shadow: 1px 1px 5px rgb(128, 202, 255);
+}
+
+.category-delete:hover {
+    cursor: pointer;
+    text-shadow: 1px 1px 5px rgb(255, 128, 128);
+}
+
+.category-edit:hover {
+    cursor: pointer;
+    text-shadow: 1px 1px 5px rgb(128, 202, 255);
 }

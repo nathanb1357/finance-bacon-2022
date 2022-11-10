@@ -25,7 +25,6 @@ function addBudget(){
                     }, {merge: true})
                     .then(() => {
                         console.log("Document succesfully written!");
-                        getCategories();
                     })
                 }
                 getCategories();
@@ -64,9 +63,14 @@ function deleteCategory(clicked) {
     selected.remove();
 }
 
-
-
-
+function addCategory() {
+    let budgetTemplate = document.getElementById("edit-template");
+    let budgetGroup = document.getElementById("budget-group");
+    let budgetRow = budgetTemplate.content.cloneNode(true);
+    budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" placeholder=\"Name\">";
+    budgetRow.querySelector('.category-percent').innerHTML = "<input type=\"number\" placeholder=\"%\">";  //equiv getElementByClassName
+    budgetGroup.appendChild(budgetRow);
+}
 
 
 function editCategory() {
