@@ -50,6 +50,17 @@ function getCategories() {
 
 
 function editCategory() {
-    let budgetTemplate = document.getElementById("edit-template");
-    
+    let budgetTemplate = document.getElementById("budget-template");
+    let budgetGroup = document.getElementById("budget-group");
+    currentUser.collection("budget").get()
+        .then(allCategories => {
+            allCategories.forEach(doc => {
+                var categoryName = doc.data().name; //gets the name field
+                var categoryPercentage = doc.data().percentage * 100 + "%"; //gets the percentage field
+                let budgetRow = budgetTemplate.content.cloneNode(true);
+                budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" placeholder=\"" + categoryName + "\">";   //equiv getElementByClassName
+                budgetRow.querySelector('.category-percent').innerHTML = categoryPercentage;  //equiv getElementByClassName
+                budgetGroup.appendChild(budgetRow);
+            });
+        });
 }

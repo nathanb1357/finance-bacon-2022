@@ -86,3 +86,8 @@
     color: blue;
     text-decoration: underline;
 }
+
+.category-delete {
+    color: red;
+    text-decoration: underline;
+}

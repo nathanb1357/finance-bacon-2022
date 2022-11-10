@@ -39,9 +39,10 @@
     <!-- Category Template -->
     <template id="budget-template">
       <form class="tr">
-        <span class="td category-name"><input type="text" placeholder="Hello">Placeholder</span>
+        <span class="td category-name">Placeholder</span>
         <span class="td category-percent">Placeholder</span>
         <span class="td category-edit" onclick="editCategory();">Edit</span>
+        <span class="td category-delete" onclick="deleteCategory();">Delete</span>
       </form>
     </template>
 
@@ -59,7 +60,7 @@
     <!-- Content Goes Here! -->
     <div id="budget-new">
         <div id="budget-heading">
-            <h1>Create Your Budget</h1>
+            <h1>Add Expense Categories</h1>
             <p>Add premade and custom categories to your budget<br>and assign a percentage value for each category.</p>
             <hr>
         </div>
@@ -69,6 +70,7 @@
                 <span class="th" scope="column">Category</span>
                 <span class="th" scope="column">Percentage of Budget</span>
                 <span class="th" scope="column"></span>
+                <span class="th" scope="column"></span>
               </div>
             </div>
             <div class="tbody" id="budget-group"></div>
@@ -76,6 +78,7 @@
               <div class="tr">
                 <span class="tf"></span>
                 <span class="tf">Add a Category</span>
+                <span class="tf"></span>
                 <span class="tf"></span>
               </div>
             </div>
