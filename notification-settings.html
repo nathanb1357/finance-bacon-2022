@@ -54,6 +54,10 @@
             </div>
             <fieldset id="overspendingOptions" disabled>
                 <div class="mb-3 form-check">
+                    <input class="form-check-input" name="radios" type="radio" id="60Percent">
+                    <label class="form-check-label" for="60Percent">60%</label>
+                </div>
+                <div class="mb-3 form-check">
                     <input class="form-check-input" name="radios" type="radio" id="70Percent">
                     <label class="form-check-label" for="70Percent">70%</label>
                 </div>
@@ -65,25 +69,20 @@
                     <input class="form-check-input" name="radios" type="radio" id="90Percent">
                     <label class="form-check-label" for="90Percent">90%</label>
                 </div>
-                <div class="mb-3 form-check">
-                    <input class="form-check-input" name="radios" type="radio" id="customPercent">
-                    <label class="form-check-label" for="customPercent">Custom</label>
-                </div>
             </fieldset>
             <hr>
             <!-- If attribute checked is present, switch defaults to true -->
             <div class="mb-3 form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="pushNotifications" checked="">
+                <input class="form-check-input" type="checkbox" id="pushNotifications" onclick="pushToggle()">
                 <label class="form-check-label" for="pushNotifications">Enable Push Notifications</label>
             </div>
             <!-- If attribute checked is present, switch defaults to true -->
             <div class="mb-3 form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="emailNotifications" checked="">
+                <input class="form-check-input" type="checkbox" id="emailNotifications" onclick="emailToggle()">
                 <label class="form-check-label" for="emailNotifications">Enable Email Notifications</label>
             </div>
             <hr>
         </div>
-        <input type="submit" name="submit" value="Submit">
     </form>
 
     <!-- Footer Template -->
