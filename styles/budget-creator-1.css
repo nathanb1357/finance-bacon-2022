@@ -124,3 +124,8 @@
     bottom: 40px;
     text-align: center;
 }
+
+a {
+    color: white;
+    text-decoration: none;
+}
