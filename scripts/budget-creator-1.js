@@ -73,18 +73,19 @@ function addCategory() {
 }
 
 
-function editCategory() {
-    let budgetTemplate = document.getElementById("budget-template");
-    let budgetGroup = document.getElementById("budget-group");
-    currentUser.collection("categories").get()
-        .then(allCategories => {
-            allCategories.forEach(doc => {
-                var categoryName = doc.data().name; //gets the name field
-                var categoryPercentage = doc.data().percentage * 100 + "%"; //gets the percentage field
-                let budgetRow = budgetTemplate.content.cloneNode(true);
-                budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" placeholder=\"" + categoryName + "\">";   //equiv getElementByClassName
-                budgetRow.querySelector('.category-percent').innerHTML = categoryPercentage;  //equiv getElementByClassName
-                budgetGroup.appendChild(budgetRow);
-            });
-        });
+function editCategory(clicked) {
+    var selected = clicked.parentNode;
+    let documentName = selected.querySelector('.category-name').innerHTML;
+    let documentPercent = selected.querySelector('.category-percent').innerHTML;
+    let budgetTemplate = document.getElementById("edit-template");
+    currentUser.collection("categories").doc(documentName).get().then( () => {
+        let budgetRow = budgetTemplate.content.cloneNode(true);
+        budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" placeholder=\"" + documentName + "\">";   //equiv getElementByClassName
+        budgetRow.querySelector('.category-percent').innerHTML = "<input type=\"text\" placeholder=\"" + documentPercent + "\">";  //equiv getElementByClassName
+        selected.parentNode.replaceChild(budgetRow, selected);
+    });
+}
+
+function submitCategory(clicked) {
+    var selected = clicked.parentNode;
 }
