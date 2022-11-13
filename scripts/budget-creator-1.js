@@ -67,25 +67,36 @@ function addCategory() {
     let budgetTemplate = document.getElementById("edit-template");
     let budgetGroup = document.getElementById("budget-group");
     let budgetRow = budgetTemplate.content.cloneNode(true);
-    budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" placeholder=\"Name\">";
-    budgetRow.querySelector('.category-percent').innerHTML = "<input type=\"number\" placeholder=\"%\">";  //equiv getElementByClassName
+    budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" pattern=\"[A-Za-z]{1,20}\" placeholder=\"Name\" value=\"Name\" required>";
+    budgetRow.querySelector('.category-percent').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" placeholder=\"%\" value=\"10\" required>";  
     budgetGroup.appendChild(budgetRow);
 }
 
 
 function editCategory(clicked) {
     var selected = clicked.parentNode;
-    let documentName = selected.querySelector('.category-name').innerHTML;
-    let documentPercent = selected.querySelector('.category-percent').innerHTML;
+    let documentName = selected.querySelector('.category-name').value;
+    let documentPercent = selected.querySelector('.category-percent').value;
     let budgetTemplate = document.getElementById("edit-template");
     currentUser.collection("categories").doc(documentName).get().then( () => {
         let budgetRow = budgetTemplate.content.cloneNode(true);
-        budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" placeholder=\"" + documentName + "\">";   //equiv getElementByClassName
-        budgetRow.querySelector('.category-percent').innerHTML = "<input type=\"text\" placeholder=\"" + documentPercent + "\">";  //equiv getElementByClassName
+        budgetRow.querySelector('.category-name').innerHTML = "<input type=\"text\" pattern=\"[A-Za-z]{1,20}\" placeholder=\"" 
+            + documentName + "\" value=\"" + documentName + "\" required>";  
+        budgetRow.querySelector('.category-percent').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" placeholder=\"" 
+            + documentPercent + "\" value=\"" + documentPercent + "\" required>";  
         selected.parentNode.replaceChild(budgetRow, selected);
     });
 }
 
 function submitCategory(clicked) {
     var selected = clicked.parentNode;
+    let budgetTemplate = document.getElementById("budget-template");
+    let documentName = selected.querySelector('.category-name').value;
+    alert(documentName);
+    let documentPercent = selected.querySelector('.category-percent').value;
+    alert(documentPercent);
+    let budgetRow = budgetTemplate.content.cloneNode(true);
+    budgetRow.querySelector('.category-name').innerHTML = documentName;
+    budgetRow.querySelector('.category-percent').innerHTML = documentPercent;
+    selected.parentNode.replaceChild(budgetRow, selected);
 }
