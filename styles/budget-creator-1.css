@@ -109,3 +109,18 @@
     cursor: pointer;
     text-shadow: 1px 1px 5px rgb(128, 202, 255);
 }
+
+.category-submit {
+    color: blue;
+    text-decoration: underline;
+}
+
+.category-submit:hover {
+    cursor: pointer;
+    text-shadow: 1px 1px 5px rgb(128, 202, 255);
+}
+
+#next {
+    bottom: 40px;
+    text-align: center;
+}

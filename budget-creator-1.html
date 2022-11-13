@@ -38,21 +38,21 @@
 <body>
     <!-- Category Template -->
     <template id="budget-template">
-      <form class="tr">
+      <div class="tr">
         <span class="td category-name">Placeholder</span>
         <span class="td category-percent">Placeholder</span>
         <span class="td category-edit" onclick="editCategory(this);">Edit</span>
         <span class="td category-delete" onclick="deleteCategory(this);">Delete</span>
-      </form>
+      </div>
     </template>
 
     <template id="edit-template">
-      <form class="tr">
-        <span class="td category-name">Placeholder</span>
-        <span class="td category-percent">Placeholder</span>
+      <div class="tr">
+        <span class="td category-name"></span>
+        <span class="td category-percent"></span>
         <span class="td category-submit" onclick="submitCategory(this);">Submit</span>
         <span class="td category-delete" onclick="deleteCategory(this);">Delete</span>
-      </form>
+      </div>
     </template>
 
     <!-- Navbar Template -->
@@ -84,6 +84,9 @@
               </div>
             </div>
         </div>
+    </div>
+    <div id="next">
+      <button type="button" class="btn btn-primary" href="./budget-creator-2.html">Next</button>
     </div>
 
     <!---------------------------------------------->
