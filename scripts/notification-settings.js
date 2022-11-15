@@ -17,14 +17,14 @@ function notificationSettings() {
                 } else {
                     document.getElementById("overspendingWarning").checked = false;
                 }
-                notificationPush = notifications.data().notificationPush;
-                if (notificationPush == true) {
+                notifPush = notifications.data().notificationsPush;
+                if (notifPush == true) {
                     document.getElementById("pushNotifications").checked = true;
                 } else {
                     document.getElementById("pushNotifications").checked = false;
                 }
-                notificationEmail = notifications.data().notificationEmail;
-                if (notificationEmail == true) {
+                notifEmail = notifications.data().notificationsEmail;
+                if (notifEmail == true) {
                     document.getElementById("emailNotifications").checked = true;
                 } else {
                     document.getElementById("emailNotifications").checked = false;
@@ -58,35 +58,35 @@ function overSpendToggle() {
 }
 
 function pushToggle() {
-    if (notificationPush == true) {
-        notificationPush = false;
+    if (notifPush == true) {
+        notifPush = false;
         // In case something weird happens and checks go out of sync
         document.getElementById("pushNotifications").checked = false;
         currentUser.update({
-            notificationPush: false
+            notificationsPush: false
         })
-    } else if (notificationPush == false) {
-        notificationPush = true;
+    } else if (notifPush == false) {
+        notifPush = true;
         document.getElementById("pushNotifications").checked = true;
         currentUser.update({
-            notificationPush: true
+            notificationsPush: true
         })
     }
 }
 
 function emailToggle() {
-    if (notificationEmail == true) {
-        notificationEmail = false;
+    if (notifEmail == true) {
+        notifEmail = false;
         // In case something weird happens and checks go out of sync
         document.getElementById("emailNotifications").checked = false;
         currentUser.update({
-            notificationEmail: false
+            notificationsEmail: false
         })
-    } else if (notificationEmail == false) {
-        notificationEmail = true;
+    } else if (notifEmail == false) {
+        notifEmail = true;
         document.getElementById("emailNotifications").checked = true;
         currentUser.update({
-            notificationEmail: true
+            notificationsEmail: true
         })
     }
 }

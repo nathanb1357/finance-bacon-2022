@@ -78,13 +78,15 @@
 
             <div class="amount">
                 <div style="margin-bottom: 10px">Amount</div>
-                <input type="text" name="amount" placeholder="$0.00" pattern="{0-9}" required>
+                <input id="expenseAmount" type="number" name="amount" placeholder="$0.00" pattern="{0-9}" required>
             </div>
 
+            <!--
             <div class="date">
                 <div style="margin-bottom: 10px">Date</div>
                 <input type="text" name="amount" placeholder="Nov-05-2022" pattern="{A-Za-z0-9}" required>
             </div>
+            -->
 
             <div class="dropdown-category">
                 <div style="margin-bottom: 10px">Payment Category</div>
@@ -100,7 +102,7 @@
             </div>
 
             <div id="submit">
-                <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="margin:10px">
+                <button type="button" class="btn btn-light btn-outline-dark" class="btn btn-primary" style="margin:10px" onclick="addExpense()">Submit</button>
                 <button type="button" class="btn btn-light btn-outline-dark" style="margin:10px">Cancel</button>
             </div>
         </form>
@@ -114,6 +116,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_TEAM14.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/add-expenses.js"></script>
 </body>
 
 </html>
