@@ -2,7 +2,7 @@ var currentUser;
 var expRef;
 var expAmount;
 var expenseDate;
-var currency;
+var currInput;
 var payType;
 var payCat;
 
@@ -22,9 +22,15 @@ function addExpense() {
     console.log("monkey");
     
     expRef = currentUser.collection("expenses").doc();
+    currInput = document.getElementById("dropdownCurrency").value;
+    payType = document.getElementById("dropdownType").value;
+    payCat = document.getElementById("dropdownCategory").value;
     expAmount = document.getElementById("expenseAmount").value;
     expRef.set({
+            dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+            currencyType: currInput,
+            paymentType: payType,
+            paymentCategory: payCat,
             expense: expAmount,
-            date_added: firebase.firestore.FieldValue.serverTimestamp(),
-        })
+    });
 }
