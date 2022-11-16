@@ -1,7 +1,7 @@
 var currentUser;
 var expRef;
+var expName;
 var expAmount;
-var expenseDate;
 var currInput;
 var payType;
 var payCat;
@@ -19,18 +19,42 @@ function addExpensesHome() {
 addExpensesHome(); //run the function
 
 function addExpense() {
-    console.log("monkey");
-    
-    expRef = currentUser.collection("expenses").doc();
+    expRef = currentUser.collection("expenses");
+    expName = document.getElementById("expenseName").value;
     currInput = document.getElementById("dropdownCurrency").value;
     payType = document.getElementById("dropdownType").value;
     payCat = document.getElementById("dropdownCategory").value;
-    expAmount = document.getElementById("expenseAmount").value;
-    expRef.set({
-            dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
-            currencyType: currInput,
-            paymentType: payType,
-            paymentCategory: payCat,
-            expense: expAmount,
-    });
+    expAmount = parseInt(document.getElementById("expenseAmount").value);
+
+    // Empty input not allowed
+    if (expAmount != null && expAmount > 0) {
+        if (expName.length > 0) {
+            expRef.doc(expName).set({
+                dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+                currencyType: currInput,
+                paymentType: payType,
+                paymentCategory: payCat,
+                expense: expAmount,
+            });
+            document.getElementById("expenseName").value = "";
+        } else {
+            // Auto-generate ID if field is empty
+            expRef.doc().set({
+                dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+                currencyType: currInput,
+                paymentType: payType,
+                paymentCategory: payCat,
+                expense: expAmount,
+            });
+        }
+        document.getElementById("expense-form").reset();
+        alert("Expense Added!");
+    } else {
+        alert("Invalid Entry!");
+    }
+}
+
+function cancelForm() {
+    document.getElementById("expense-form").reset();
+    document.getElementById("expenseName").value = "";
 }

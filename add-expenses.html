@@ -47,12 +47,11 @@
         <div id="currencyHeading">
             <h1>Add Expense</h1>
             <hr>
-            <h4>Expense 01</h4>
+            <input id="expenseName" class="form-control form-control-lg w-50" type="text" placeholder="Expense Name" aria-label="Expense Name">
         </div>
         <form id="expense-form">
             <div class="dropdown-currency">
                 <div style="margin-bottom: 10px">Currency</div>
-                
                 <!--
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCurrency"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -124,7 +123,7 @@
 
             <div id="submit">
                 <button type="button" class="btn btn-light btn-outline-dark" class="btn btn-primary" style="margin:10px" onclick="addExpense()">Submit</button>
-                <button type="button" class="btn btn-light btn-outline-dark" style="margin:10px">Cancel</button>
+                <button type="button" class="btn btn-light btn-outline-dark" style="margin:10px" onclick="cancelForm()">Cancel</button>
             </div>
         </form>
 
