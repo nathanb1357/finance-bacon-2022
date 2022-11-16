@@ -36,6 +36,7 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 100px;
+    font-size: 13pt;
 }
 
 #budget-heading {
@@ -55,11 +56,23 @@
     display: table-row-group;
 }
 
+.tr:nth-child(2n + 1) {
+    background-color: rgb(217, 217, 217);
+}
+
 .tfoot {
     display: table-footer-group;
 }
 
 .tr {
+    display:table-row;
+}
+
+.tfr {
+    display:table-row;
+}
+
+.thr {
     display:table-row;
 }
 
@@ -128,4 +141,9 @@
 a {
     color: white;
     text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
 }
