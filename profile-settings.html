@@ -36,10 +36,14 @@
 </head>
 
 <body>
+
     <template id="currency-Template">
         <div class="money"> 
             
         </div>
+
+    <template id="currency-template">
+        <option id="template-option"></option>
     </template>
 
     <!-- Navbar Template -->
@@ -51,7 +55,6 @@
             <h1>Profile Settings</h1>
             <p>Customize your profile.</p>
             <hr>
-            <img id="profilePicture" src="./images/MHARTI.jpg" alt="Your Profile Picture">
         </div>
         <div id="profileBody">
             <div class="mb-3 col-md-4">
@@ -70,16 +73,12 @@
                   <option id="yen" value="6">¥ (YEN)</option>
                   <option id="hkd" value="7">$ (HKD)</option>
                   <option id="yuan" value="8">¥ (YUAN)</option>
+
+            <div id = "currency-Options" class="mb-3 col-md-4">
+                <select id="currency-group" class="form-select" aria-label="">
+                  <option selected="">Currency options</option>
+
                 </select>
-            </div>
-            <hr>
-            <div class="form-floating mb-3 col-md-4">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="New Password">
-                <label for="floatingPassword" class="form-label">New Password</label>
-            </div>
-            <div class="form-floating mb-3 col-md-4">
-                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm New Password">
-                <label for="floatingPasswordConfirm" class="form-label">Confirm New Password</label>
             </div>
             <hr>
             <div class="form-floating mb-3 col-md-4">
@@ -101,8 +100,8 @@
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_TEAM14.js"></script>
-    <script src="./scripts/notification-settings.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/profile.js"></script>
 </body>
 
 </html>

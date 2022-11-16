@@ -21,7 +21,15 @@ function budgetLink(){
         // Check if a user is signed in:
         if (user) {
             var currentUser = db.collection("users").doc(user.uid);
-            currentUser.collection("budget").limit(1).get().then(sub => {
+            currentUser.collection("categories").limit(1).get().then(sub => {
+                // User does not have budget
+                if (sub.docs.length == 0) {
+                    console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));
+                    console.log($('#footerPlaceholder').html(''));
+                // User had a budget
+                }
+            })
+            currentUser.collection("sources").limit(1).get().then(sub => {
                 // User does not have budget
                 if (sub.docs.length == 0) {
                     console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));

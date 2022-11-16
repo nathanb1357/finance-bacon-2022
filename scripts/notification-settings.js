@@ -9,13 +9,25 @@ function notificationSettings() {
         // Check if a user is signed in:
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
-            currentUser.get().then(ovSpend => {
-                overspendWarn = ovSpend.data().overspendWarning
+            currentUser.get().then(notifications => {
+                overspendWarn = notifications.data().overspendWarning;
                 if (overspendWarn == true) {
                     document.getElementById("overspendingWarning").checked = true;
                     document.getElementById("overspendingOptions").disabled = false;
                 } else {
                     document.getElementById("overspendingWarning").checked = false;
+                }
+                notifPush = notifications.data().notificationsPush;
+                if (notifPush == true) {
+                    document.getElementById("pushNotifications").checked = true;
+                } else {
+                    document.getElementById("pushNotifications").checked = false;
+                }
+                notifEmail = notifications.data().notificationsEmail;
+                if (notifEmail == true) {
+                    document.getElementById("emailNotifications").checked = true;
+                } else {
+                    document.getElementById("emailNotifications").checked = false;
                 }
             })
         } else {
@@ -41,6 +53,40 @@ function overSpendToggle() {
         document.getElementById("overspendingOptions").disabled = false;
         currentUser.update({
             overspendWarning: true
+        })
+    }
+}
+
+function pushToggle() {
+    if (notifPush == true) {
+        notifPush = false;
+        // In case something weird happens and checks go out of sync
+        document.getElementById("pushNotifications").checked = false;
+        currentUser.update({
+            notificationsPush: false
+        })
+    } else if (notifPush == false) {
+        notifPush = true;
+        document.getElementById("pushNotifications").checked = true;
+        currentUser.update({
+            notificationsPush: true
+        })
+    }
+}
+
+function emailToggle() {
+    if (notifEmail == true) {
+        notifEmail = false;
+        // In case something weird happens and checks go out of sync
+        document.getElementById("emailNotifications").checked = false;
+        currentUser.update({
+            notificationsEmail: false
+        })
+    } else if (notifEmail == false) {
+        notifEmail = true;
+        document.getElementById("emailNotifications").checked = true;
+        currentUser.update({
+            notificationsEmail: true
         })
     }
 }
