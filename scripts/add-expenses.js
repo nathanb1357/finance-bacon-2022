@@ -1,4 +1,6 @@
 var currentUser;
+var currDB;
+var currConv;
 var expRef;
 var expName;
 var expAmount;
@@ -19,7 +21,7 @@ function addExpensesHome() {
 addExpensesHome(); //run the function
 
 function addExpense() {
-    expRef = currentUser.collection("expenses");
+    expRef = currentUser.collection("expenses").doc();
     expName = document.getElementById("expenseName").value;
     currInput = document.getElementById("dropdownCurrency").value;
     payType = document.getElementById("dropdownType").value;
@@ -28,25 +30,30 @@ function addExpense() {
 
     // Empty input not allowed
     if (expAmount != null && expAmount > 0) {
-        if (expName.length > 0) {
-            expRef.doc(expName).set({
-                dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
-                currencyType: currInput,
-                paymentType: payType,
-                paymentCategory: payCat,
-                expense: expAmount,
-            });
-            document.getElementById("expenseName").value = "";
-        } else {
-            // Auto-generate ID if field is empty
-            expRef.doc().set({
-                dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
-                currencyType: currInput,
-                paymentType: payType,
-                paymentCategory: payCat,
-                expense: expAmount,
-            });
-        }
+        currDB = db.collection("currency").doc(currInput);
+        currDB.get().then(conversion => {
+            currConv = conversion.data().conversionPercent;
+            if (currConv > 1) {
+                expRef.set({
+                    name: expName,
+                    dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+                    currencyType: currInput,
+                    paymentType: payType,
+                    paymentCategory: payCat,
+                    expense: expAmount / currConv,
+                });
+            } else if (currConv < 1) {
+                expRef.set({
+                    name: expName,
+                    dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+                    currencyType: currInput,
+                    paymentType: payType,
+                    paymentCategory: payCat,
+                    expense: expAmount * currConv,
+                });
+            }
+        })
+        document.getElementById("expenseName").value = "";
         document.getElementById("expense-form").reset();
         alert("Expense Added!");
     } else {

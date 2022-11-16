@@ -1,4 +1,6 @@
 var currentUser;
+var currDB;
+var currConv;
 var incRef;
 var incName;
 var incCurrInput;
@@ -19,7 +21,7 @@ function addIncomeHome() {
 addIncomeHome(); //run the function
 
 function addIncome() {
-    incRef = currentUser.collection("income");
+    incRef = currentUser.collection("income").doc();
     incName = document.getElementById("incomeName").value;
     incCurrInput = document.getElementById("dropdownCurrency").value;
     incType = document.getElementById("dropdownType").value;
@@ -28,23 +30,28 @@ function addIncome() {
 
     // Empty input not allowed
     if (incAmount != null && incAmount > 0) {
-        if (incName.length > 0) {
-            incRef.doc(incName).set({
-                currencyType: incCurrInput,
-                incomeType: incType,
-                incomeCategory: incCat,
-                income: incAmount,
-            });
-            document.getElementById("incomeName").value = "";
-        } else {
-            // Auto-generate ID if field is empty
-            incRef.doc().set({
-                currencyType: incCurrInput,
-                incomeType: incType,
-                incomeCategory: incCat,
-                income: incAmount,
-            });
-        }
+        currDB = db.collection("currency").doc(incCurrInput);
+        currDB.get().then(conversion => {
+            currConv = conversion.data().conversionPercent;
+            if (currConv > 1) {
+                incRef.set({
+                    name: incName,
+                    currencyType: incCurrInput,
+                    incomeType: incType,
+                    incomeCategory: incCat,
+                    income: incAmount / currConv,
+                });
+            } else if (currConv < 1) {
+                incRef.set({
+                    name: incName,
+                    currencyType: incCurrInput,
+                    incomeType: incType,
+                    incomeCategory: incCat,
+                    income: incAmount * currConv,
+                });
+            }
+        })
+        document.getElementById("incomeName").value = "";
         document.getElementById("income-form").reset();
         alert("Income Added!");
     } else {
