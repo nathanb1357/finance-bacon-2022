@@ -1,0 +1,103 @@
+/*******************************/
+/* BOOTSTRAP CSS (DO NOT EDIT) */
+/*******************************/
+.navbar-expand-lg{flex-wrap:nowrap;justify-content:flex-start}
+.navbar-expand-lg .navbar-nav{flex-direction:row}
+.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute}
+.navbar-expand-lg .navbar-nav 
+.nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-lg 
+.navbar-nav-scroll{overflow:visible}.navbar-expand-lg 
+.navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-lg 
+.navbar-toggler{display:none}.navbar-expand-lg 
+.offcanvas-header{display:none}.navbar-expand-lg 
+.offcanvas{position:inherit;bottom:0;z-index:1000;flex-grow:1;visibility:visible!important;background-color:transparent;border-right:0;border-left:0;transition:none;transform:none}.navbar-expand-lg 
+.offcanvas-bottom,.navbar-expand-lg 
+.offcanvas-top{height:auto;border-top:0;border-bottom:0}.navbar-expand-lg 
+.offcanvas-body{display:flex;flex-grow:0;padding:0;overflow-y:visible}
+
+/*******************/
+/* Navbar template */
+/*******************/
+.navbar {
+    display: grid;
+    background-color: #53b856;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+}
+
+#nav-profile {
+    align-items: right;
+}
+
+/*************************/
+/* Custom CSS Goes Here! */
+/*************************/
+
+#expense {
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 100px;
+}
+
+#expense-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+#currencyHeading {
+   text-align: center; 
+}
+
+.dropdown-currency{
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+    margin: 10px;
+}
+
+.dropdown-type{
+    grid-column: 3;
+    grid-row: 1;
+    margin: 10px;
+    text-align: center;
+}
+
+.amount{
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    text-align: center;
+    margin: 10px;
+}
+
+.dropdown-category{
+    grid-column: 2 / span 2;
+    grid-row: 4;
+    display: block;
+    text-align: center;
+    margin: 10px;
+}
+
+.date{
+    grid-column: 2 / span 2;
+    grid-row: 3;
+    display: block;
+    text-align: center;
+    margin: 10px;
+}
+
+#submit{
+    grid-column: 2 / span 2;
+    grid-row: 5;
+    text-align: center;
+    margin: 10px;
+}
+
+#displayExpenses{
+    margin-top: 500px;
+}
