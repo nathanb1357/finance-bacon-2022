@@ -38,7 +38,7 @@
 <body>
 
     <template id="currency-template">
-        <option id="template-option"></option>
+        <option class="option-template"></option>
     </template>
 
     <!-- Navbar Template -->
@@ -53,19 +53,21 @@
         </div>
         <div id="profileBody">
             <div id = "currency-Options" class="mb-3 col-md-4">
-                <select id="currency-group" class="form-select" aria-label="">
+                <label for="currency-group" class="form-label"><b>Change Your Displayed Currency:</b></label>
+                <select id="currency-group" class="form-select">
                   <option selected="">Currency options</option>
                 </select>
             </div>
             <hr>
-            <div class="form-floating mb-3 col-md-4">
-                <input type="email" class="form-control" id="changeEmail" placeholder="Change Email Address">
-                <label for="changeEmail" class="form-label">Change Email Address</label>
+            <div class="mb-3 col-md-4">
+                <label for="exampleInputEmail1" class="form-label"><b>Email Address:</b></label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Change Email Address">
             </div>
-            <div class="form-floating mb-3 col-md-4">
-                <input type="tel" class="form-control" id="floatingInput" placeholder="604-555-5555">
-                <label for="floatingInput" class="form-label">Phone Number</label>
+            <div class="mb-3 col-md-4">
+                <label for="phoneInput" class="form-label"><b>Phone Number:</b></label>
+                <input type="tel" class="form-control" id="phoneInput" placeholder="Change Phone Number">
             </div>
+            <input type="submit" id="submit" value="Submit" onclick="changeEmail()">
         </div>
     </div>
 
