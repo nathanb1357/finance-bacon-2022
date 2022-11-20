@@ -44,27 +44,35 @@
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: repeat(5, 1fr);
-
-    margin-left: auto;
-    margin-right: auto;
     align-items: center;
+    text-align: center;
 }
 
 #currencyHeading {
-   text-align: center; 
+   text-align: center;
+   display: block;
+}
+
+#incomeName {
+    margin-left: 13%;
+    margin-right: 13%;
+}
+
+.form-select {
+    margin-left: 13%;
+    margin-right: 13%;
 }
 
 .dropdown-currency{
     grid-column: 2;
     grid-row: 1;
-    text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
 
 .dropdown-type{
     grid-column: 3;
     grid-row: 1;
-    margin: 10px;
+    margin: 20px;
     text-align: center;
 }
 
@@ -72,28 +80,24 @@
     grid-column: 2 / span 2;
     grid-row: 2;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
 
 .dropdown-source{
     grid-column: 2 / span 2;
-    grid-row: 4;
-    display: block;
+    grid-row: 3;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
 
-.date{
-    grid-column: 2 / span 2;
-    grid-row: 3;
-    display: block;
-    text-align: center;
-    margin: 10px;
+#source{
+    margin-left: 25%;
+    margin-right: 25%;
 }
 
 #submit{
     grid-column: 2 / span 2;
     grid-row: 5;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
