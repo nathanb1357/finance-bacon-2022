@@ -52,17 +52,6 @@
         <form id="income-form">
             <div class="dropdown-currency">
                 <div style="margin-bottom: 10px">Currency</div>
-                <!--
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCurrency"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    $ (CAD)
-                </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
-                    <li><a class="dropdown-item" href="#">$ (CAD)</a></li>
-                    <li><a class="dropdown-item" href="#">$ (USD)</a></li>
-                    <li><a class="dropdown-item" href="#">¥ (JPY)</a></li>
-                </ul>
-                -->
                 <select id="dropdownCurrency" class="form-select w-50" aria-label="Currency">
                     <option value="CAD">$ (CAD)</option>
                     <option value="USD">$ (USD)</option>
@@ -72,20 +61,6 @@
 
             <div class="dropdown-type">
                 <div style="margin-bottom: 10px">Income Type</div>
-                <!--
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTop" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Debit Card (TD)
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownTop">
-                    <li><a class="dropdown-item" href="#">Debit Card (TD)</a></li>
-                    <li><a class="dropdown-item" href="#">Credit Card (VISA)</a></li>
-                    <li><a class="dropdown-item" href="#">Cash</a></li>
-                    <li><a class="dropdown-item" href="#">Cheque</a></li>
-                    <li><a class="dropdown-item" href="#">Mobile payment</a></li>
-                    <li><a class="dropdown-item" href="#">E-Transfer</a></li>
-                </ul>
-                -->
                 <select id="dropdownType" class="form-select w-50" aria-label="Income Type">
                     <option value="Bank_Account">Bank Account</option>
                     <option value="Cash">Cash</option>
@@ -98,26 +73,7 @@
                 <input id="incomeAmount" type="number" name="amount" placeholder="$0.00" pattern="{0-9}" required>
             </div>
 
-            <!--
-            <div class="date">
-                <div style="margin-bottom: 10px">Date</div>
-                <input type="text" name="amount" placeholder="Nov-05-2022" pattern="{A-Za-z0-9}" required>
-            </div>
-            -->
-
             <div class="dropdown-source">
-                <!--
-                <div style="margin-bottom: 10px">Source of Income</div>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCop" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Investments
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownCop">
-                    <li><a class="dropdown-item" href="#">Job (Superstore)</a></li>
-                    <li><a class="dropdown-item" href="#">Investments</a></li>
-                    <li><a class="dropdown-item" href="#">Gifts</a></li>
-                </ul>
-                -->
                 <select id="dropdownCategory" class="form-select w-25" aria-label="Income Category">
                     <option value="Job">Job</option>
                     <option value="Investments">Investments</option>

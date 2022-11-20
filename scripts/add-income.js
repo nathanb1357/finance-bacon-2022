@@ -1,11 +1,9 @@
 var currentUser;
-var currDB;
-var currConv;
 var incRef;
 var incName;
-var incCurrInput;
+var incCurrency;
 var incType;
-var incCat;
+var incCategory;
 var incAmount;
 
 function addIncomeHome() {
@@ -13,6 +11,7 @@ function addIncomeHome() {
         // Check if a user is signed in:
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
+
         } else {
             window.location.assign("index.html");    // No user is signed in.
         }
@@ -20,36 +19,28 @@ function addIncomeHome() {
 }
 addIncomeHome(); //run the function
 
+
 function addIncome() {
     incRef = currentUser.collection("income").doc();
     incName = document.getElementById("incomeName").value;
-    incCurrInput = document.getElementById("dropdownCurrency").value;
+    incCurrency = document.getElementById("dropdownCurrency").value;
     incType = document.getElementById("dropdownType").value;
-    incCat = document.getElementById("dropdownCategory").value;
-    incAmount = parseInt(document.getElementById("incomeAmount").value);
+    incCategory = document.getElementById("dropdownCategory").value;
+    incAmount = parseFloat(document.getElementById("incomeAmount").value);
 
     // Empty input not allowed
     if (incAmount != null && incAmount > 0) {
-        currDB = db.collection("currency").doc(incCurrInput);
+        var currDB = db.collection("currency").doc(incCurrency);
         currDB.get().then(conversion => {
-            currConv = conversion.data().conversionPercent;
-            if (currConv > 1) {
-                incRef.set({
-                    name: incName,
-                    currencyType: incCurrInput,
-                    incomeType: incType,
-                    incomeCategory: incCat,
-                    income: incAmount / currConv,
-                });
-            } else if (currConv < 1) {
-                incRef.set({
-                    name: incName,
-                    currencyType: incCurrInput,
-                    incomeType: incType,
-                    incomeCategory: incCat,
-                    income: incAmount * currConv,
-                });
-            }
+            var incConvert = conversion.data().conversionPercent;
+            incRef.set({
+                name: incName,
+                dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+                currencyType: incCurrency,
+                incomeType: incType,
+                incomeCategory: incCategory,
+                income: incAmount / incConvert,
+            });           
         })
         document.getElementById("incomeName").value = "";
         document.getElementById("income-form").reset();

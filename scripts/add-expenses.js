@@ -33,25 +33,14 @@ function addExpense() {
         currDB = db.collection("currency").doc(currInput);
         currDB.get().then(conversion => {
             currConv = conversion.data().conversionPercent;
-            if (currConv > 1) {
-                expRef.set({
-                    name: expName,
-                    dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
-                    currencyType: currInput,
-                    paymentType: payType,
-                    paymentCategory: payCat,
-                    expense: expAmount / currConv,
-                });
-            } else if (currConv < 1) {
-                expRef.set({
-                    name: expName,
-                    dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
-                    currencyType: currInput,
-                    paymentType: payType,
-                    paymentCategory: payCat,
-                    expense: expAmount * currConv,
-                });
-            }
+            expRef.set({
+                name: expName,
+                dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+                currencyType: currInput,
+                paymentType: payType,
+                paymentCategory: payCat,
+                expense: expAmount / currConv,
+             });
         })
         document.getElementById("expenseName").value = "";
         document.getElementById("expense-form").reset();

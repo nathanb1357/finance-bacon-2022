@@ -1,6 +1,7 @@
 var currentUser;
 var overspendWarn;
-var notif = document.getElementById("overspendingWarning").checked;
+var notifPush;
+var notifEmail;
 
 //var overspendWarning = false;
 
@@ -17,13 +18,13 @@ function notificationSettings() {
                 } else {
                     document.getElementById("overspendingWarning").checked = false;
                 }
-                notifPush = notifications.data().notificationsPush;
+                notifPush = notifications.data().notificationPush;
                 if (notifPush == true) {
                     document.getElementById("pushNotifications").checked = true;
                 } else {
                     document.getElementById("pushNotifications").checked = false;
                 }
-                notifEmail = notifications.data().notificationsEmail;
+                notifEmail = notifications.data().notificationEmail;
                 if (notifEmail == true) {
                     document.getElementById("emailNotifications").checked = true;
                 } else {
@@ -63,13 +64,13 @@ function pushToggle() {
         // In case something weird happens and checks go out of sync
         document.getElementById("pushNotifications").checked = false;
         currentUser.update({
-            notificationsPush: false
+            notificationPush: false
         })
     } else if (notifPush == false) {
         notifPush = true;
         document.getElementById("pushNotifications").checked = true;
         currentUser.update({
-            notificationsPush: true
+            notificationPush: true
         })
     }
 }
@@ -80,13 +81,13 @@ function emailToggle() {
         // In case something weird happens and checks go out of sync
         document.getElementById("emailNotifications").checked = false;
         currentUser.update({
-            notificationsEmail: false
+            notificationEmail: false
         })
     } else if (notifEmail == false) {
         notifEmail = true;
         document.getElementById("emailNotifications").checked = true;
         currentUser.update({
-            notificationsEmail: true
+            notificationEmail: true
         })
     }
 }

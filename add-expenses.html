@@ -52,17 +52,6 @@
         <form id="expense-form">
             <div class="dropdown-currency">
                 <div style="margin-bottom: 10px">Currency</div>
-                <!--
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCurrency"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    $ (CAD)
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
-                    <li value="CAD"><a class="dropdown-item" href="#" value="CAD">$ (CAD)</a></li>
-                    <li value="USD"><a class="dropdown-item" href="#" value="USD">$ (USD)</a></li>
-                    <li value="JPY"><a class="dropdown-item" href="#" value="JPY">¥ (JPY)</a></li>
-                </ul>
-                -->
                 <select id="dropdownCurrency" class="form-select w-50" aria-label="Currency">
                     <option value="CAD">$ (CAD)</option>
                     <option value="USD">$ (USD)</option>
@@ -72,20 +61,6 @@
 
             <div class="dropdown-type">
                 <div style="margin-bottom: 10px">Payment Type</div>
-                <!--
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTop" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Debit Card (TD)
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownTop">
-                    <li><a class="dropdown-item" href="#">Debit Card (TD)</a></li>
-                    <li><a class="dropdown-item" href="#">Credit Card (VISA)</a></li>
-                    <li><a class="dropdown-item" href="#">Cash</a></li>
-                    <li><a class="dropdown-item" href="#">Cheque</a></li>
-                    <li><a class="dropdown-item" href="#">Mobile payment</a></li>
-                    <li><a class="dropdown-item" href="#">E-Transfer</a></li>
-                </ul>
-                -->
                 <select id="dropdownType" class="form-select w-50" aria-label="Payment Type">
                     <option value="Debit_TD">Debit Card (TD)</option>
                     <option value="Credit_VISA">Credit Card (VISA)</option>
@@ -98,25 +73,8 @@
                 <input id="expenseAmount" type="number" name="amount" placeholder="$0.00" pattern="{0-9}" required>
             </div>
 
-            <!--
-            <div class="date">
-                <div style="margin-bottom: 10px">Date</div>
-                <input type="text" name="amount" placeholder="Nov-05-2022" pattern="{A-Za-z0-9}" required>
-            </div>
-            -->
-
             <div class="dropdown-category">
                 <div style="margin-bottom: 10px">Payment Category</div>
-                <!--
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCop" data-bs-toggle="dropdown" aria-expanded="false">
-                    Utilities
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownCop">
-                    <li><a class="dropdown-item" href="#">Utilities</a></li>
-                    <li><a class="dropdown-item" href="#">Entertainment</a></li>
-                    <li><a class="dropdown-item" href="#">Food</a></li>
-                </ul>
-                -->
                 <select id="dropdownCategory" class="form-select w-25" aria-label="Expense Category">
                     <option value="Utilities">Utilities</option>
                     <option value="Entertainment">Entertainment</option>
