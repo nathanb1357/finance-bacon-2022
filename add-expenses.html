@@ -33,8 +33,7 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/add-expenses.css
-    ">
+    <link rel="stylesheet" href="./styles/add-expenses.css">
 
 </head>
 
@@ -42,30 +41,37 @@
     <!-- Navbar Template -->
     <nav id="navbarPlaceholder"></nav>
 
+    <!-- Currency Template -->
+    <template id="currency-template">
+        <option class="option-template"></option>
+    </template>
+    
+    <!-- Type Template -->
+    <template id="type-template">
+        <option class="option-template-2"></option>
+    </template>
+    
+    <!-- Category Template -->
+    <template id="category-template">
+        <option class="option-template-3"></option>
+    </template>
+
     <!-- Content Goes Here! -->
     <div id="expense">
         <div id="currencyHeading">
             <h1>Add Expense</h1>
             <hr>
-            <input id="expenseName" class="form-control form-control-lg w-50" type="text" placeholder="Expense Name" aria-label="Expense Name">
+            <input id="expenseName" class="form-control form-control-lg w-75" type="text" placeholder="Expense Name" aria-label="Expense Name">
         </div>
         <form id="expense-form">
             <div class="dropdown-currency">
                 <div style="margin-bottom: 10px">Currency</div>
-                <select id="dropdownCurrency" class="form-select w-50" aria-label="Currency">
-                    <option value="CAD">$ (CAD)</option>
-                    <option value="USD">$ (USD)</option>
-                    <option value="JPY">$ (JPY)</option>
-                </select>
+                <select id="currency" class="form-select w-75" aria-label="Currency"></select>
             </div>
 
             <div class="dropdown-type">
                 <div style="margin-bottom: 10px">Payment Type</div>
-                <select id="dropdownType" class="form-select w-50" aria-label="Payment Type">
-                    <option value="Debit_TD">Debit Card (TD)</option>
-                    <option value="Credit_VISA">Credit Card (VISA)</option>
-                    <option value="Cash">Cash</option>
-                </select>
+                <select id="type" class="form-select w-75" aria-label="Payment Type"></select>
             </div>
 
             <div class="amount">
@@ -75,11 +81,7 @@
 
             <div class="dropdown-category">
                 <div style="margin-bottom: 10px">Payment Category</div>
-                <select id="dropdownCategory" class="form-select w-25" aria-label="Expense Category">
-                    <option value="Utilities">Utilities</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Food">Food</option>
-                </select>
+                <select id="category" class="form-select w-50" aria-label="Expense Category"></select>
             </div>
 
             <div id="submit">

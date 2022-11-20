@@ -59,8 +59,9 @@ function getSource() {
     .then(allTypes => {
         allTypes.forEach(doc => {
             var name = doc.data().name;
+            var name2 = name.replace(" ", "-")
             let sourceRow = sourceTemplate.content.cloneNode(true);
-            sourceRow.querySelector(".option-template-3").innerHTML = "<option id=\"" + name + "\" value=\"" + name + "\">" + name + "</option>"
+            sourceRow.querySelector(".option-template-3").innerHTML = "<option id=\"" + name2 + "\" value=\"" + name2 + "\">" + name + "</option>"
             sourceGroup.appendChild(sourceRow);
         })
     })  
