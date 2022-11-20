@@ -31,15 +31,60 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./styles/budget-creator-2.css">
 
 </head>
 
 <body>
+    <!-- Budget Template -->
+    <template id="budget-template">
+      <div class="tr">
+        <span class="td category-name">Placeholder</span>
+        <span class="td category-edit" onclick="editSource(this);">Edit</span>
+        <span class="td category-delete" onclick="deleteSource(this);">Delete</span>
+      </div>
+    </template>
+
+    <template id="edit-template">
+      <div class="tr">
+        <span class="td category-name"></span>
+        <span class="td category-submit" onclick="submitSource(this);">Submit</span>
+        <span class="td category-delete" onclick="deleteSource(this);">Delete</span>
+      </div>
+    </template>
+
     <!-- Navbar Template -->
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
+    <div id="budget-new">
+        <div id="budget-heading">
+            <h1>Edit Income Sources</h1>
+            <p>Edit the sources of your income.</p>
+            <hr>
+        </div>
+        <div class="table table-striped">
+            <div class="thead">
+              <div class="thr">
+                <span class="th" scope="column">Source</span>
+                <span class="th" scope="column"></span>
+                <span class="th" scope="column"></span>
+              </div>
+            </div>
+            <div class="tbody" id="budget-group"></div>
+            <div class="tfoot">
+              <div class="tfr">
+                <span class="tf"></span>
+                <span class="tf" id="add" onclick="addSource();">Add A Source</span>
+                <span class="tf"></span>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="buttons">
+        <button type="button" class="btn btn-secondary"><a href="./budget-editor-1.html">Previous</a></button>
+        <button type="button" class="btn btn-primary"><a href="./home.html">Finish</a></button>
+    </div>
 
     <!-- Footer Template -->
     <nav id="footerPlaceholder"></nav>
@@ -49,6 +94,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_TEAM14.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/budget-editor-2.js"></script>
 </body>
 
 </html>
