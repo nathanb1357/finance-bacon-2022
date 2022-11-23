@@ -37,10 +37,48 @@
 </head>
 
 <body>
+
+    <!-- Graph Template -->
+    <template>
+        <h3 class="graphTitle"></h3>
+        <canvas class="graph" style="width:100%; max-width:700px"></canvas>
+    </template>
+
     <!-- Navbar Template -->
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
+    <div id="graphs">
+        <div id="graphsHeading">
+            <h1><span id="name-goes-here"></span>'s Graphs</h1>
+            <p>View graphs of your finances and select one to be displayed on your homepage.</p>
+            <hr>
+        </div>
+        <div id="graphsDisplay">
+            <div class="graphCard">
+                <h3 class="graphTitle"></h3>
+                <canvas id="expectedExpenses" style="width:100%; max-width:700px"></canvas>
+            </div>
+        </div>
+        <div id="graphsDisplay">
+            <div class="graphCard">
+                <h3 class="graphTitle"></h3>
+                <canvas id="actualExpenses" style="width:100%; max-width:700px"></canvas>
+            </div>
+        </div>
+        <div id="graphsDisplay">
+            <div class="graphCard">
+                <h3 class="graphTitle"></h3>
+                <canvas id="categoriesGraph" style="width:100%; max-width:700px"></canvas>
+            </div>
+        </div>
+        <div id="graphsDisplay">
+            <div class="graphCard">
+                <h3 class="graphTitle"></h3>
+                <canvas id="sourcesGraph" style="width:100%; max-width:700px"></canvas>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Template -->
     <nav id="footerPlaceholder"></nav>
