@@ -35,6 +35,7 @@ function getIncomeSum(){
 }
 
 function addExpected(){
+    const expectedExpenses = document.getElementById("expectedExpenses");
     let currencyPercent = userCurrency.conversionPercent;
     currentUser.collection("categories").get().then(allCategories => {
         allCategories.forEach(doc => {
@@ -42,7 +43,7 @@ function addExpected(){
             var y = doc.data().percentage * incomeSum
             yValues.push(y);
         })
-        var expectedExpenses = new Chart("myChart", {
+        new Chart(expectedExpenses, {
             type: "pie",
             data: {
             labels: xValues,
@@ -54,9 +55,21 @@ function addExpected(){
             options: {
             title: {
                 display: true,
-                text: "World Wide Wine Production"
+                text: "Expected Expenses"
             }
             }
         });
     })
+}
+
+function addActual(){
+
+}
+
+function addCategories(){
+
+}
+
+function addSources(){
+
 }
