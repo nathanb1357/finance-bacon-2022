@@ -16,6 +16,9 @@ function getCurrency() {
 }
 getCurrency();
 
+
+
+
 function changeEmail(){
     
 }
