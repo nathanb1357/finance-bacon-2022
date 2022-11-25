@@ -33,6 +33,14 @@
 /* Custom CSS Goes Here! */
 /*************************/
 
+#cardGalleryOuter {
+    margin-top: 10%;
+}
+
+.expButton {
+    align-items: center;
+}
+
 #expense {
     margin-top: 100px;
     margin-left: 5%;

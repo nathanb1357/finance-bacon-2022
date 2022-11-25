@@ -36,10 +36,82 @@
 </head>
 
 <body>
+    <!--Templates-->
+    <!-- Templates for general use, not displayed -->
+    <template id="currency-template">
+        <option class="option-template"></option>
+    </template>
+    
+    <!-- Type Template -->
+    <template id="type-template">
+        <option class="option-template-2"></option>
+    </template>
+    
+    <!-- Category Template -->
+    <template id="category-template">
+        <option class="option-template-3"></option>
+    </template>
+    
+    <template id="expenseCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <p id="card-doc-ID" class=".d-none" hidden="hidden">Card ID</p>
+                <h5 class="card-title">Card title</h5>
+                <p id="card-timestamp"></p>
+                <hr>
+                <p class="card-pay"></p>
+                <p class="card-currency"></p>
+                <p class="card-pay-type"></p>
+                <p class="card-pay-category"></p>
+                <a class="btn btn-primary card-href expButton" onclick="editExpense(this)">Edit</a>
+                <a class="btn btn-primary card-href expButton" onclick="deleteExpense(this)">Delete</a>
+            </div>
+        </div>
+    </template>
+
+    <template id="expenseCardTemplate-edit">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <p id="card-doc-ID" class=".d-none" hidden="hidden">Card ID</p>
+                <h5 class="card-title">Card title</h5>
+                <p id="card-timestamp"></p>
+                <hr>
+                <p class="card-pay"></p>
+                <form id="edit-form">
+                    <div class="dropdown-currency card-currency">
+                        <div style="margin-bottom: 10px">Currency</div>
+                        <select id="currency" class="form-select w-75" aria-label="Currency"></select>
+                    </div>
+        
+                    <div class="dropdown-type card-pay-type">
+                        <div style="margin-bottom: 10px">Payment Type</div>
+                        <select id="type" class="form-select w-75" aria-label="Payment Type"></select>
+                    </div>
+        
+                    <div class="dropdown-category card-pay-category">
+                        <div style="margin-bottom: 10px">Payment Category</div>
+                        <select id="category" class="form-select w-50" aria-label="Expense Category"></select>
+                    </div>
+                </form>
+                <a class="btn btn-primary card-href expButton" onclick="submitExpense(this)">Submit</a>
+                <a class="btn btn-primary card-href expButton" onclick="deleteExpense(this)">Delete</a>
+            </div>
+        </div>
+    </template>
+
     <!-- Navbar Template -->
+    
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
+    <div id="cardGalleryOuter" class="cardGallery">
+        <h1>Some popular hikes</h1>
+        <!-- Here is container for cards  -->
+        <div class="cardGallery">
+            <div id="cards-go-here" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
 
     <!-- <div id="displayExpenses">
 
