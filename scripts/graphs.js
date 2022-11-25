@@ -89,18 +89,15 @@ function addActual(){
                 allExpenses.forEach(expense => {
                     if (expense.data().paymentCategory == doc.data().name){
                         y = y + expense.data().expense;
-                        console.log(y);
                         ySum += y;
                     } 
                 })
             })
-            console.log(y);
             yValues.push(y);
             y = 0;
         })
         xValues.push("Unspent Income");
         yValues.push(incomeSum - ySum)
-        console.log(y);
         new Chart(actualExpenses, {
             type: "pie",
             data: {
@@ -117,6 +114,9 @@ function addActual(){
             }
             }
         })
+        xValues = [];
+        y = 0;
+        yValues = [];
     })
 }
 
@@ -124,21 +124,64 @@ function addCategories(){
     const categoriesGraph = document.getElementById("categoriesGraph");
     let currencyPercent = userCurrency.conversionPercent;
 
-    new Chart(actualExpenses, {
-        type: "bar",
-        data: {
-        labels: xValues,
-        datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-        }]
-        },
-        options: {
-        title: {
-            display: true,
-            text: "Actual Expenses"
-        }
-        }
+    currentUser.collection("categories").get().then(allCategories => {
+        allCategories.forEach(doc => {
+            console.log(doc.data().name)
+            xValues.push(doc.data().name);
+        })
+        console.log(xValues);
+        var promise1 = new Promise(function(resolve, reject) {
+            y = xValues.map((x) => {
+                setTimeout(function(){ resolve(yValues); }, 300);
+                let yAdd = 0;
+                currentUser.collection("expenses").get().then(allExpenses => {
+                    allExpenses.forEach(doc => {   
+                        if (doc.data().paymentCategory == x){
+                            yAdd = yAdd + doc.data().expense;
+                            console.log(yAdd);
+                        }
+                    })
+                    console.log(yValues);
+                    yValues.push(yAdd);
+                })
+            });
+        });
+            
+        promise1.then((yValues) => {
+            console.log(yValues);
+            new Chart(categoriesGraph, {
+                type: "bar",
+                data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                      display: true,
+                      text: "Expense Categories"
+                    }
+                }
+            })
+        });
+    })
+}
+
+function getY(x){
+    setTimeout(function(){ resolve(yValues); }, 3000);
+    let yAdd = 0;
+    currentUser.collection("expenses").get().then(allExpenses => {
+        allExpenses.forEach(doc => {   
+            if (doc.data().paymentCategory == x){
+                yAdd = yAdd + doc.data().expense;
+                console.log(yAdd);
+            }
+        })
+        console.log(yValues);
+        yValues.push(yAdd);
     })
 }
 
