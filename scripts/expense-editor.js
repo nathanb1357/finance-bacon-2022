@@ -196,6 +196,7 @@ function submitExpense(clicked) {
     let documentName = selected.querySelector('.card-title').querySelector('input').value;
     let documentPay = selected.querySelector('.card-pay').querySelector('input').value;
     let documentCurrency = document.getElementById("currency").value;
+    documentCurrency = documentCurrency.replace(/[^A-Za-z]/g, "")
     let documentPayType = document.getElementById("type").value;
     let documentPayCategory = document.getElementById("category").value;
     let documentTimeStamp = selected.querySelector('#card-timestamp').innerHTML;
@@ -217,10 +218,6 @@ function submitExpense(clicked) {
     expenseRow.querySelector('#card-timestamp').innerHTML = documentTimeStamp;
     selected.replaceWith(expenseRow, selected);
 }
-// newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
-//                 newcard.querySelector('.card-pay-type').innerHTML = uPayType;
-//                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
-//                 // newcard.querySelector('.card-timestamp').innerHTML = tStamp;
 
 function refresh() {
     window.location.reload();
