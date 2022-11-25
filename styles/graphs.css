@@ -23,11 +23,19 @@
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
 }
+
 #nav-profile{
     align-items: right;
 }
 
-
 /*************************/
 /* Custom CSS Goes Here! */
 /*************************/
+
+#graphs{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
