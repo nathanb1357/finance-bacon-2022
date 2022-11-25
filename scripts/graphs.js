@@ -163,10 +163,24 @@ function addCategories(){
                     title: {
                       display: true,
                       text: "Expense Categories"
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    if(parseInt(value) >= 1000){
+                                        return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return '$' + value;
+                                    }
+                                }
+                            }
+                        }]
                     }
                 }
             })
-        });
+        })
     })
 }
 
