@@ -5,6 +5,7 @@ var uDocID;
 var uTitle;
 
 var uCurrencyType;
+var symbol;
 var uExpense;
 var uCategory;
 var uPayType;
@@ -66,7 +67,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 })
 
-function displayCards(collection) {
+function displayCards() {
     let cardTemplate = document.getElementById("expenseCardTemplate");
 
     currentUser.collection("expenses").get()
@@ -85,13 +86,22 @@ function displayCards(collection) {
                 let tStamp = uYear + "/" + uMonth + "/" + uDay;
                 let newcard = cardTemplate.content.cloneNode(true);
 
+                // db.collection("currency").doc(uCurrencyType).get()
+                //     .then(symb => {
+                //         symbol = symb.data().moneySymbol;
+                //         newcard = cardTemplate.content.cloneNode(true);
+                //         console.log("Monkey Add)");
+                //         newcard.querySelector('.card-pay').innerHTML = "dddd" + symbol + Math.trunc(uExpense);
+                //         console.log(symbol);
+                //     });
+
                 newcard.querySelector('#card-doc-ID').innerHTML = uDocID;
                 newcard.querySelector('.card-title').innerHTML = uTitle;
-                newcard.querySelector('.card-timestamp').innerHTML = uDateAdded;
-                newcard.querySelector('.card-pay').innerHTML += Math.trunc(uExpense);
+                newcard.querySelector('.card-pay').innerHTML = Math.trunc(uExpense);
                 newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
+                newcard.querySelector('.card-pay-type').innerHTML = uPayType;
                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
-                newcard.querySelector('.card-timestamp').innerHTML = tStamp;
+                newcard.querySelector('#card-timestamp').innerHTML = tStamp;
 
                 //give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "cTitle" + i);
@@ -101,8 +111,53 @@ function displayCards(collection) {
                 //attach to gallery
                 document.getElementById("cards-go-here").appendChild(newcard);
                 //i++;   //if you want to use commented out section
-            })
+            });
+        });
+}
+
+function getCurrency() {
+    db.collection("currency").get()
+    .then(allCurrencies => {
+        allCurrencies.forEach(doc => {
+            var acronym = doc.data().moneyAcronym;
+            var symbol = doc.data().moneySymbol;
+            let currencyTemplate = document.getElementById("currency-template");
+            let currencyGroup = document.getElementById("currency");
+            let currencyRow = currencyTemplate.content.cloneNode(true);
+            currencyRow.querySelector(".option-template").innerHTML = "<option id=\"" + acronym + "\" value=\"" + acronym + "\">" + symbol + " (" + acronym + ")</option>"
+            currencyGroup.appendChild(currencyRow);
         })
+    })
+}
+
+function getType() {
+    db.collection("types").get()
+    .then(allTypes => {
+        allTypes.forEach(doc => {
+            var name = doc.data().name;
+            var name2 = name.replace(" ", "-")
+            let typeTemplate = document.getElementById("type-template");
+            let typeGroup = document.getElementById("type");
+            let typeRow = typeTemplate.content.cloneNode(true);
+            typeRow.querySelector(".option-template-2").innerHTML = "<option id=\"" + name2 + "\" value=\"" + name2 + "\">" + name + "</option>"
+            typeGroup.appendChild(typeRow);
+        })
+    })
+}
+
+function getCategory() {
+    currentUser.collection("categories").get()
+    .then(allTypes => {
+        allTypes.forEach(doc => {
+            var name = doc.data().name;
+            var name2 = name.replace(" ", "-")
+            let sourceTemplate = document.getElementById("category-template");
+            let sourceGroup = document.getElementById("category");
+            let sourceRow = sourceTemplate.content.cloneNode(true);
+            sourceRow.querySelector(".option-template-3").innerHTML = "<option id=\"" + name2 + "\" value=\"" + name2 + "\">" + name + "</option>"
+            sourceGroup.appendChild(sourceRow);
+        })
+    })  
 }
 
 function editExpense(clicked) {
@@ -112,6 +167,9 @@ function editExpense(clicked) {
     let documentPay = selected.querySelector('.card-pay').innerHTML;
     let expenseTemplate = document.getElementById("expenseCardTemplate-edit");
     currentUser.collection("expenses").doc(docID).get().then( () => {
+        getCurrency();
+        getType();
+        getCategory();
         let expenseRow = expenseTemplate.content.cloneNode(true);
         expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
         expenseRow.querySelector('.card-title').innerHTML = "<input type=\"text\" pattern=\"[A-Za-z]{1,20}\" value=\"" + documentName + "\" required>";  
@@ -137,14 +195,33 @@ function submitExpense(clicked) {
     let expenseTemplate = document.getElementById("expenseCardTemplate");
     let documentName = selected.querySelector('.card-title').querySelector('input').value;
     let documentPay = selected.querySelector('.card-pay').querySelector('input').value;
+    let documentCurrency = document.getElementById("currency").value;
+    let documentPayType = document.getElementById("type").value;
+    let documentPayCategory = document.getElementById("category").value;
+    let documentTimeStamp = selected.querySelector('#card-timestamp').innerHTML;
+    console.log(documentTimeStamp);
     currentUser.collection("expenses").doc(docID).set({
         name: documentName,
-        expense: documentPay
+        expense: documentPay,
+        currencyType: documentCurrency,
+        paymentCategory: documentPayCategory,
+        paymentType: documentPayType
     }, {merge: true})
     let expenseRow = expenseTemplate.content.cloneNode(true);
+    expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
     expenseRow.querySelector('.card-title').innerHTML = documentName;
     expenseRow.querySelector('.card-pay').innerHTML = documentPay;
+    expenseRow.querySelector('.card-currency').innerHTML = documentCurrency;
+    expenseRow.querySelector('.card-pay-type').innerHTML = documentPayType;
+    expenseRow.querySelector('.card-pay-category').innerHTML = documentPayCategory;
+    expenseRow.querySelector('#card-timestamp').innerHTML = documentTimeStamp;
     selected.replaceWith(expenseRow, selected);
-    //Reload page to properly refresh everything
-    displayCards();
+}
+// newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
+//                 newcard.querySelector('.card-pay-type').innerHTML = uPayType;
+//                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
+//                 // newcard.querySelector('.card-timestamp').innerHTML = tStamp;
+
+function refresh() {
+    window.location.reload();
 }
