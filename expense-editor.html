@@ -36,10 +36,55 @@
 </head>
 
 <body>
+    <!--Templates-->
+    <!-- Templates for general use, not displayed -->
+    <template id="expenseCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <p id="card-doc-ID" class=".d-none" hidden="hidden">Card ID</p>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-timestamp"></p>
+                <hr>
+                <p class="card-pay"></p>
+                <p class="card-currency"></p>
+                <p class="card-pay-type"></p>
+                <p class="card-pay-category"></p>
+                <a class="btn btn-primary card-href expButton" onclick="editExpense(this)">Edit</a>
+                <a class="btn btn-primary card-href expButton" onclick="deleteExpense(this)">Delete</a>
+            </div>
+        </div>
+    </template>
+
+    <template id="expenseCardTemplate-edit">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <p id="card-doc-ID" class=".d-none" hidden="hidden">Card ID</p>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-timestamp"></p>
+                <hr>
+                <p class="card-pay"></p>
+                <p class="card-currency"></p>
+                <p class="card-pay-type"></p>
+                <p class="card-pay-category"></p>
+                <a class="btn btn-primary card-href expButton" onclick="submitExpense(this)">Submit</a>
+                <a class="btn btn-primary card-href expButton" onclick="deleteExpense(this)">Delete</a>
+            </div>
+        </div>
+    </template>
+
     <!-- Navbar Template -->
+    
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
+    <div id="cardGalleryOuter" class="cardGallery">
+        <h1>Some popular hikes</h1>
+        <!-- Here is container for cards  -->
+        <div class="cardGallery">
+            <div id="cards-go-here" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
 
     <!-- <div id="displayExpenses">
 
