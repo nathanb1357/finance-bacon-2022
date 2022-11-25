@@ -180,25 +180,74 @@ function addCategories(){
                     }
                 }
             })
+            addSources();
         })
-    })
-}
-
-function getY(x){
-    setTimeout(function(){ resolve(yValues); }, 3000);
-    let yAdd = 0;
-    currentUser.collection("expenses").get().then(allExpenses => {
-        allExpenses.forEach(doc => {   
-            if (doc.data().paymentCategory == x){
-                yAdd = yAdd + doc.data().expense;
-                console.log(yAdd);
-            }
-        })
-        console.log(yValues);
-        yValues.push(yAdd);
     })
 }
 
 function addSources(){
+    xValues = [];
+    y = 0;
+    yValues = [];
+    const sourcesGraph = document.getElementById("sourcesGraph");
+    let currencyPercent = userCurrency.conversionPercent;
 
+    currentUser.collection("sources").get().then(allSources => {
+        allSources.forEach(doc => {
+            console.log(doc.data().name)
+            xValues.push(doc.data().name);
+        })
+        console.log(xValues);
+        var promise2 = new Promise(function(resolve, reject) {
+            y = xValues.map((x) => {
+                setTimeout(function(){ resolve(yValues); }, 300);
+                let yAdd = 0;
+                currentUser.collection("income").get().then(allIncome => {
+                    allIncome.forEach(doc => {   
+                        if (doc.data().incomeCategory == x){
+                            yAdd = yAdd + doc.data().income;
+                            console.log(yAdd);
+                        }
+                    })
+                    console.log(yValues);
+                    yValues.push(yAdd);
+                })
+            });
+        });
+            
+        promise2.then((yValues) => {
+            console.log(yValues);
+            new Chart(sourcesGraph, {
+                type: "bar",
+                data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                      display: true,
+                      text: "Income Sources"
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function(value, index, values) {
+                                    if(parseInt(value) >= 1000){
+                                        return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return '$' + value;
+                                    }
+                                }
+                            }
+                        }]
+                    }
+                }
+            })
+        })
+    })
 }
