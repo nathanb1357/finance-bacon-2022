@@ -54,7 +54,9 @@
         <div id="profileBody">
             <div id = "currency-Options" class="mb-3 col-md-4">
                 <label for="currency-group" class="form-label"><b>Change Your Displayed Currency:</b></label>
-                <select id="currency-group" class="form-select"></select>
+                <select id="currency-group" class="form-select">
+                    <option id="placeholder" value="0"></option>
+                </select>
             </div>
             <hr>
             <input type="submit" id="submit" value="Submit" onclick="submitCurrency()">

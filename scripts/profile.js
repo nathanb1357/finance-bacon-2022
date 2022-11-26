@@ -1,10 +1,15 @@
 var currentUser;
+var userCurrency;
 
 function addProfile() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
-            getCurrency();
+            currentUser.get().then(doc => {
+                userCurrency = doc.data().userCurrency;
+                document.getElementById("placeholder").innerHTML = userCurrency;
+                getCurrency();
+            })
         } else {
             window.location.assign("index.html");
         }
@@ -13,16 +18,17 @@ function addProfile() {
 addProfile();
 
 function getCurrency() {
+    var importantX = 1;
     let currencyTemplate = document.getElementById("currency-template");
     let currencyGroup = document.getElementById("currency-group");
     db.collection("currency").get()
     .then(allCurrencies => {
-        x = 1;
+        let x = 1;
         allCurrencies.forEach(doc => {
             var acronym = doc.data().moneyAcronym;
             var symbol = doc.data().moneySymbol;
             let currencyRow = currencyTemplate.content.cloneNode(true);
-            currencyRow.querySelector(".option-template").innerHTML = "<option id=\"" + acronym + "\" value=\"" + x + "\">" + symbol + " (" + acronym + ")</option>"
+            currencyRow.querySelector(".option-template").innerHTML = "<option id=\"" + acronym + "\" value=\"" + x + "\" selected>" + symbol + " (" + acronym + ")</option>"
             x = x + 1;
             currencyGroup.appendChild(currencyRow);
         })
@@ -35,4 +41,5 @@ function submitCurrency() {
     currentUser.set({
         userCurrency: currInput
     }, {merge: true})
+    alert("Currency Changed!");
 }
