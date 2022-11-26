@@ -1,3 +1,17 @@
+var currentUser;
+
+function addProfile() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            currentUser = db.collection("users").doc(user.uid);
+            getCurrency();
+        } else {
+            window.location.assign("index.html");
+        }
+    });
+}
+addProfile();
+
 function getCurrency() {
     let currencyTemplate = document.getElementById("currency-template");
     let currencyGroup = document.getElementById("currency-group");
@@ -14,11 +28,11 @@ function getCurrency() {
         })
     })
 }
-getCurrency();
 
-
-
-
-function changeEmail(){
-    
+function submitCurrency() {
+    currInput = document.getElementById("currency-group").value;
+    currInput = currInput.replace(/[^A-Za-z]/g, "")
+    currentUser.set({
+        userCurrency: currInput
+    }, {merge: true})
 }

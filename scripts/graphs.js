@@ -1,6 +1,8 @@
 var currentUser;
 var incomeSum = 0;
 var userCurrency;
+var currencyPercent;
+var moneySymbol;
 var xValues = [];
 var yValues = [];
 var y;
@@ -13,9 +15,16 @@ function checkLogin(){
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
             username = user.displayName;
-            userCurrency = db.collection("currency").doc(currentUser.currency);
-            document.getElementById("name-goes-here").innerText = username;
-            getIncomeSum();
+            currentUser.get().then(doc => {
+                userCurrency = doc.data().userCurrency;
+                ref = db.collection("currency").doc(userCurrency);
+                ref.get().then(currency => {
+                    currencyPercent = currency.data().conversionPercent;
+                    moneySymbol = currency.data().moneySymbol;
+                    document.getElementById("name-goes-here").innerText = username;
+                    getIncomeSum();
+                });
+            })
         } else {
             window.location.assign("index.html");
         }
@@ -40,17 +49,16 @@ function getIncomeSum(){
 
 function addExpected(){
     const expectedExpenses = document.getElementById("expectedExpenses");
-    let currencyPercent = userCurrency.conversionPercent;
     let ySum = 0;
     currentUser.collection("categories").get().then(allCategories => {
         allCategories.forEach(doc => {
             xValues.push(doc.data().name);
-            y = doc.data().percentage * incomeSum;
+            y = doc.data().percentage * incomeSum * currencyPercent;
             ySum += y;
-            yValues.push(y);
+            yValues.push(y.toFixed(2));
         })
         xValues.push("Unspent Income");
-        yValues.push(incomeSum - ySum)
+        yValues.push(((incomeSum * currencyPercent) - ySum).toFixed(2))
         new Chart(expectedExpenses, {
             type: "pie",
             data: {
@@ -64,6 +72,13 @@ function addExpected(){
             title: {
                 display: true,
                 text: "Expected Expenses"
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        return moneySymbol + data.datasets[0].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                }
             }
             }
         });
@@ -76,7 +91,6 @@ function addExpected(){
 // NEEDS TO BE REWORKED
 function addActual(){
     const actualExpenses = document.getElementById("actualExpenses");
-    let currencyPercent = userCurrency.conversionPercent;
     let ySum = 0;
     currentUser.collection("categories").get().then(allCategories => {
         allCategories.forEach(doc => {
@@ -122,13 +136,12 @@ function addActual(){
 
 function addCategories(){
     const categoriesGraph = document.getElementById("categoriesGraph");
-    let currencyPercent = userCurrency.conversionPercent;
-
     currentUser.collection("categories").get().then(allCategories => {
         allCategories.forEach(doc => {
             console.log(doc.data().name)
             xValues.push(doc.data().name);
         })
+
         console.log(xValues);
         var promise1 = new Promise(function(resolve, reject) {
             y = xValues.map((x) => {
@@ -142,7 +155,7 @@ function addCategories(){
                         }
                     })
                     console.log(yValues);
-                    yValues.push(yAdd);
+                    yValues.push((yAdd * currencyPercent).toFixed(2));
                 })
             });
         });
@@ -170,13 +183,20 @@ function addCategories(){
                                 beginAtZero: true,
                                 callback: function(value, index, values) {
                                     if(parseInt(value) >= 1000){
-                                        return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        return moneySymbol + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                                     } else {
-                                        return '$' + value;
+                                        return moneySymbol + value;
                                     }
                                 }
                             }
                         }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return moneySymbol + tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            }
+                        }
                     }
                 }
             })
@@ -190,8 +210,6 @@ function addSources(){
     y = 0;
     yValues = [];
     const sourcesGraph = document.getElementById("sourcesGraph");
-    let currencyPercent = userCurrency.conversionPercent;
-
     currentUser.collection("sources").get().then(allSources => {
         allSources.forEach(doc => {
             console.log(doc.data().name)
@@ -210,7 +228,7 @@ function addSources(){
                         }
                     })
                     console.log(yValues);
-                    yValues.push(yAdd);
+                    yValues.push((yAdd * currencyPercent).toFixed(2));
                 })
             });
         });
@@ -238,13 +256,20 @@ function addSources(){
                                 beginAtZero: true,
                                 callback: function(value, index, values) {
                                     if(parseInt(value) >= 1000){
-                                        return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        return moneySymbol + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                                     } else {
-                                        return '$' + value;
+                                        return moneySymbol + value;
                                     }
                                 }
                             }
                         }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return moneySymbol + tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            }
+                        }
                     }
                 }
             })
