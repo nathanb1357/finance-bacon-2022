@@ -7,7 +7,7 @@ var xValues = [];
 var yValues = [];
 var y;
 var x;
-var barColors = ["red", "green", "blue", "orange", "grey"];
+var barColors = ["red", "yellow", "blue", "green", "orange", "purple", "grey"];
 
 function checkLogin(){
     firebase.auth().onAuthStateChanged(user => {
@@ -36,14 +36,12 @@ function getIncomeSum(){
     currentUser.collection("income").get().then(allIncome => {
         allIncome.forEach(doc => {
             incomeSum = incomeSum + doc.data().income;
-            if (incomeSum == NaN) {
-                displayIncomeLink();
-            } else {
-                addExpected();
-                addActual();
-                addCategories();
-            }
         })
+        if (incomeSum == NaN) {
+            displayIncomeLink();
+        } else {
+            addExpected();
+        }
     })
 }
 
@@ -69,10 +67,6 @@ function addExpected(){
             }]
             },
             options: {
-            title: {
-                display: true,
-                text: "Expected Expenses"
-            },
             tooltips: {
                 callbacks: {
                     label: function(tooltipItem, data) {
@@ -82,67 +76,22 @@ function addExpected(){
             }
             }
         });
-        xValues = [];
-        y = 0;
-        yValues = [];
+        addActual();
     })
 }
 
-// NEEDS TO BE REWORKED
+
 function addActual(){
     const actualExpenses = document.getElementById("actualExpenses");
     let ySum = 0;
+    xValues = [];
+    y = 0;
+    yValues = [];
     currentUser.collection("categories").get().then(allCategories => {
         allCategories.forEach(doc => {
             xValues.push(doc.data().name);
         })
-    });
-    currentUser.collection("categories").get().then(allCategories => {
-        allCategories.forEach(doc => {
-            currentUser.collection("expenses").get().then(allExpenses => {
-                allExpenses.forEach(expense => {
-                    if (expense.data().paymentCategory == doc.data().name){
-                        y = y + expense.data().expense;
-                        ySum += y;
-                    } 
-                })
-            })
-            yValues.push(y);
-            y = 0;
-        })
-        xValues.push("Unspent Income");
-        yValues.push(incomeSum - ySum)
-        new Chart(actualExpenses, {
-            type: "pie",
-            data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-            },
-            options: {
-            title: {
-                display: true,
-                text: "Actual Expenses"
-            }
-            }
-        })
-        xValues = [];
-        y = 0;
-        yValues = [];
-    })
-}
 
-function addCategories(){
-    const categoriesGraph = document.getElementById("categoriesGraph");
-    currentUser.collection("categories").get().then(allCategories => {
-        allCategories.forEach(doc => {
-            console.log(doc.data().name)
-            xValues.push(doc.data().name);
-        })
-
-        console.log(xValues);
         var promise1 = new Promise(function(resolve, reject) {
             y = xValues.map((x) => {
                 setTimeout(function(){ resolve(yValues); }, 300);
@@ -151,17 +100,67 @@ function addCategories(){
                     allExpenses.forEach(doc => {   
                         if (doc.data().paymentCategory == x){
                             yAdd = yAdd + doc.data().expense;
-                            console.log(yAdd);
                         }
                     })
-                    console.log(yValues);
+                    yValues.push((yAdd * currencyPercent).toFixed(2));
+                    ySum += yAdd * currencyPercent;
+                })
+            });
+        });
+
+        promise1.then((yValues) => {
+            xValues.push("Unspent Income");
+            yValues.push(((incomeSum * currencyPercent) - ySum).toFixed(2))
+            new Chart(actualExpenses, {
+                type: "pie",
+                data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+                },
+                options: {
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return moneySymbol + data.datasets[0].data[tooltipItem.index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            }
+                        }
+                    }
+                }
+            })
+            addCategories();
+        })
+    })
+}
+
+function addCategories(){
+    const categoriesGraph = document.getElementById("categoriesGraph");
+    yValues = [];
+    y = 0;
+    xValues = [];
+    currentUser.collection("categories").get().then(allCategories => {
+        allCategories.forEach(doc => {
+            xValues.push(doc.data().name);
+        })
+
+        var promise2 = new Promise(function(resolve, reject) {
+            y = xValues.map((x) => {
+                setTimeout(function(){ resolve(yValues); }, 300);
+                let yAdd = 0;
+                currentUser.collection("expenses").get().then(allExpenses => {
+                    allExpenses.forEach(doc => {   
+                        if (doc.data().paymentCategory == x){
+                            yAdd = yAdd + doc.data().expense;
+                        }
+                    })
                     yValues.push((yAdd * currencyPercent).toFixed(2));
                 })
             });
         });
             
-        promise1.then((yValues) => {
-            console.log(yValues);
+        promise2.then((yValues) => {
             new Chart(categoriesGraph, {
                 type: "bar",
                 data: {
@@ -173,10 +172,6 @@ function addCategories(){
                 },
                 options: {
                     legend: {display: false},
-                    title: {
-                      display: true,
-                      text: "Expense Categories"
-                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -206,16 +201,15 @@ function addCategories(){
 }
 
 function addSources(){
+    const sourcesGraph = document.getElementById("sourcesGraph");
     xValues = [];
     y = 0;
     yValues = [];
-    const sourcesGraph = document.getElementById("sourcesGraph");
     currentUser.collection("sources").get().then(allSources => {
         allSources.forEach(doc => {
-            console.log(doc.data().name)
             xValues.push(doc.data().name);
         })
-        console.log(xValues);
+
         var promise2 = new Promise(function(resolve, reject) {
             y = xValues.map((x) => {
                 setTimeout(function(){ resolve(yValues); }, 300);
@@ -224,17 +218,14 @@ function addSources(){
                     allIncome.forEach(doc => {   
                         if (doc.data().incomeCategory == x){
                             yAdd = yAdd + doc.data().income;
-                            console.log(yAdd);
                         }
                     })
-                    console.log(yValues);
                     yValues.push((yAdd * currencyPercent).toFixed(2));
                 })
             });
         });
             
         promise2.then((yValues) => {
-            console.log(yValues);
             new Chart(sourcesGraph, {
                 type: "bar",
                 data: {
@@ -246,10 +237,6 @@ function addSources(){
                 },
                 options: {
                     legend: {display: false},
-                    title: {
-                      display: true,
-                      text: "Income Sources"
-                    },
                     scales: {
                         yAxes: [{
                             ticks: {

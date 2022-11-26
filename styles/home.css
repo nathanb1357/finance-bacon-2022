@@ -48,3 +48,23 @@
     width: 70%;
     margin: 0 auto;
 }
+
+#photoPlaceholder{
+    width: 100%;
+    height: 450px;
+}
+#photo{
+    width: 100%;
+    height: 450px;
+    background-image: url("../images/bacon-photo.jpg");
+    background-size: cover;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#photo-opacity{
+    width: 100%;
+    height: 450px;
+    background-color: rgba(188, 188, 188, 0.363);
+    box-shadow: 1px 1px 20px black;
+}

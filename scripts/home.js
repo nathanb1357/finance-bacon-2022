@@ -26,7 +26,8 @@ function budgetLink(){
                 if (sub.docs.length == 0) {
                     console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));
                     console.log($('#footerPlaceholder').html(''));
-                // User had a budget
+                } else {
+                    console.log($('#photoPlaceholder').load('./text/homepage.html'));
                 }
             })
             currentUser.collection("sources").limit(1).get().then(sub => {
@@ -36,7 +37,7 @@ function budgetLink(){
                     console.log($('#footerPlaceholder').html(''));
                 // User had a budget
                 } else {
-                    console.log('Budget exists!')
+                    console.log($('#photoPlaceholder').load('./text/homepage.html'));
                 }
             })
         } else {
