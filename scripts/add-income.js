@@ -85,10 +85,11 @@ function addIncome() {
                 name: incName,
                 dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
                 currencyType: incCurrency,
+                convPerc: incConvert,
                 incomeType: incType,
                 incomeCategory: incCategory,
-                income: incAmount / incConvert,
-            });           
+                income: incAmount / incConvert
+            });
         })
         document.getElementById("incomeName").value = "";
         document.getElementById("income-form").reset();

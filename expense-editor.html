@@ -59,8 +59,9 @@
                 <h5 class="card-title">Card title</h5>
                 <p id="card-timestamp"></p>
                 <hr>
-                <p class="card-pay"></p>
+                <p id="card-pay"></p>
                 <p class="card-currency"></p>
+                <p class="card-currency-conv" hidden="hidden"></p>
                 <p class="card-pay-type"></p>
                 <p class="card-pay-category"></p>
                 <a class="btn btn-primary card-href expButton" onclick="editExpense(this)">Edit</a>
@@ -76,11 +77,11 @@
                 <h5 class="card-title">Card title</h5>
                 <p id="card-timestamp"></p>
                 <hr>
-                <p class="card-pay"></p>
+                <p id="card-pay"></p>
                 <form id="edit-form">
                     <div class="dropdown-currency card-currency">
                         <div style="margin-bottom: 10px">Currency</div>
-                        <select id="currency" class="form-select w-75" aria-label="Currency"></select>
+                        <select id="currency" class="form-select w-75" aria-label="Currency" onchange="autoCurrencyConvert(this)"></select>
                     </div>
         
                     <div class="dropdown-type card-pay-type">

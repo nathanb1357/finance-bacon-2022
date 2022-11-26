@@ -81,15 +81,16 @@ function addExpense() {
     if (expAmount != null && expAmount > 0) {
         currDB = db.collection("currency").doc(currInput);
         currDB.get().then(conversion => {
-            currConv = conversion.data().conversionPercent;
+            currConv = parseFloat(conversion.data().conversionPercent);
             expRef.set({
                 name: expName,
                 dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
                 currencyType: currInput,
+                convPerc: currConv,
                 paymentType: payType,
                 paymentCategory: payCat,
-                expense: expAmount / currConv,
-             });
+                expense: expAmount / currConv
+            });
         })
         document.getElementById("expenseName").value = "";
         document.getElementById("expense-form").reset();

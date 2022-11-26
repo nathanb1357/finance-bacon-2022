@@ -5,6 +5,7 @@ var uDocID;
 var uTitle;
 
 var uCurrencyType;
+var currConv;
 var symbol;
 var uExpense;
 var uCategory;
@@ -77,7 +78,8 @@ function displayCards() {
                 uDocID = doc.id;
                 uTitle = doc.data().name;
                 uCurrencyType = doc.data().currencyType;
-                uExpense = parseFloat(doc.data().expense).toFixed(2);
+                uCurrConv = doc.data().convPerc;
+                uExpense = parseFloat(doc.data().expense);
                 uCategory = doc.data().paymentCategory;
                 uPayType = doc.data().paymentType;
                 uYear = doc.data().dateAdded.toDate().getFullYear();
@@ -86,10 +88,31 @@ function displayCards() {
                 let tStamp = uYear + "/" + uMonth + "/" + uDay;
                 let newcard = cardTemplate.content.cloneNode(true);
 
+                // code for grabbing conversion value, but is not working properly within this loop
+                // might use if can find solution --dont delete pls
+                //
+                // let currDB = db.collection("currency").doc(uCurrencyType);
+                // currDB.get().then(conversion => {
+                //     var currConv = conversion.data().conversionPercent;
+                //     var currDisplay = uExpense * currConv;
+                //     let newcard = cardTemplate.content.cloneNode(true);
+                //     newcard.querySelector('#card-doc-ID').innerHTML = uDocID;
+                //     newcard.querySelector('.card-title').innerHTML = uTitle;
+                //     newcard.querySelector('#card-pay').innerHTML = currDisplay;
+                //     newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
+                //     newcard.querySelector('.card-pay-type').innerHTML = uPayType;
+                //     newcard.querySelector('.card-pay-category').innerHTML = uCategory;
+                //     newcard.querySelector('#card-timestamp').innerHTML = tStamp;
+
+                //     document.getElementById("cards-go-here").appendChild(newcard);
+                // });
+
                 newcard.querySelector('#card-doc-ID').innerHTML = uDocID;
                 newcard.querySelector('.card-title').innerHTML = uTitle;
-                newcard.querySelector('.card-pay').innerHTML = uExpense;
                 newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
+                newcard.querySelector('.card-currency-conv').innerHTML = uCurrConv;
+                // Display the correct value according to currency
+                newcard.querySelector('#card-pay').innerHTML = (uExpense * uCurrConv).toFixed(2);
                 newcard.querySelector('.card-pay-type').innerHTML = uPayType;
                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
                 newcard.querySelector('#card-timestamp').innerHTML = tStamp;
@@ -155,7 +178,7 @@ function editExpense(clicked) {
     var selected = clicked.parentNode;
     let docID = selected.querySelector('#card-doc-ID').innerHTML;
     let documentName = selected.querySelector('.card-title').innerHTML;
-    let documentPay = selected.querySelector('.card-pay').innerHTML;
+    let documentPay = selected.querySelector('#card-pay').innerHTML;
     let expenseTemplate = document.getElementById("expenseCardTemplate-edit");
     currentUser.collection("expenses").doc(docID).get().then( () => {
         getCurrency();
@@ -164,13 +187,17 @@ function editExpense(clicked) {
         let expenseRow = expenseTemplate.content.cloneNode(true);
         expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
         expenseRow.querySelector('.card-title').innerHTML = "<input type=\"text\" pattern=\"[A-Za-z]{1,20}\" value=\"" + documentName + "\" required>";  
-        expenseRow.querySelector('.card-pay').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" value=\"" + documentPay + "\" required>";  
+        expenseRow.querySelector('#card-pay').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" value=\"" + documentPay + "\" required>";  
         selected.parentNode.replaceWith(expenseRow);
     });
 }
 
 function deleteExpense(clicked) {
     var selected = clicked.parentNode;
+
+    let docID = selected.querySelector('#card-doc-ID').innerHTML;
+    currentUser.collection("expenses").doc(docID).delete();
+
     selected.parentNode.remove();
 }
 
@@ -179,37 +206,47 @@ function submitExpense(clicked) {
     let docID = selected.querySelector('#card-doc-ID').innerHTML;
     let expenseTemplate = document.getElementById("expenseCardTemplate");
     let documentName = selected.querySelector('.card-title').querySelector('input').value;
-    let documentPay = parseFloat(selected.querySelector('.card-pay').querySelector('input').value).toFixed(2);
+    let documentPay = selected.querySelector('#card-pay').querySelector('input').value;
     let documentCurrency = document.getElementById("currency").value;
     documentCurrency = documentCurrency.replace(/[^A-Za-z]/g, "")
     let documentPayType = document.getElementById("type").value;
     let documentPayCategory = document.getElementById("category").value;
-    currentUser.collection("expenses").doc(docID).set({
-        name: documentName,
-        expense: documentPay,
-        currencyType: documentCurrency,
-        paymentCategory: documentPayCategory,
-        paymentType: documentPayType
-    }, {merge: true})
-    let expenseRow = expenseTemplate.content.cloneNode(true);
+    //Grab conversion percentage
+    let currDB = db.collection("currency").doc(documentCurrency);
+    currDB.get().then(conversion => {
+        currConv = conversion.data().conversionPercent;
+        currentUser.collection("expenses").doc(docID).set({
+            name: documentName,
+            currencyType: documentCurrency,
+            convPerc: currConv,
+            expense: documentPay / currConv,
+            paymentCategory: documentPayCategory,
+            paymentType: documentPayType
+        }, {merge: true});
 
-    // Call firebase once again to grab timestamp. HTML returns empty string for some reason.
-    currentUser.collection("expenses").doc(docID).get()
+        //Populate card with updated information
+        let expenseRow = expenseTemplate.content.cloneNode(true);
+        currentUser.collection("expenses").doc(docID).get()
         .then(doc => {
             uDateAdded = doc.data().dateAdded.toDate().getDate();
             uYear = doc.data().dateAdded.toDate().getFullYear();
             uMonth = doc.data().dateAdded.toDate().getMonth();
             uDay = doc.data().dateAdded.toDate().getDate();
+            uPay = parseFloat(doc.data().expense);
+            currConv = doc.data().convPerc;
             //Format date to YY/MM/DD
             let tStamp = uYear + "/" + uMonth + "/" + uDay;
             expenseRow = expenseTemplate.content.cloneNode(true);
             expenseRow.querySelector('#card-timestamp').innerHTML = tStamp;
             expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
             expenseRow.querySelector('.card-title').innerHTML = documentName;
-            expenseRow.querySelector('.card-pay').innerHTML = documentPay;
+            //Display base value multiplied by currency's multiplier
+            expenseRow.querySelector('#card-pay').innerHTML = (uPay * currConv).toFixed(2);
             expenseRow.querySelector('.card-currency').innerHTML = documentCurrency;
+            expenseRow.querySelector('.card-currency-conv').innerHTML = currConv;
             expenseRow.querySelector('.card-pay-type').innerHTML = documentPayType;
             expenseRow.querySelector('.card-pay-category').innerHTML = documentPayCategory;
             selected.parentNode.replaceWith(expenseRow);
         });
+    });
 }
