@@ -77,7 +77,7 @@ function displayCards() {
                 uDocID = doc.id;
                 uTitle = doc.data().name;
                 uCurrencyType = doc.data().currencyType;
-                uExpense = doc.data().expense;
+                uExpense = parseFloat(doc.data().expense).toFixed(2);
                 uCategory = doc.data().paymentCategory;
                 uPayType = doc.data().paymentType;
                 uYear = doc.data().dateAdded.toDate().getFullYear();
@@ -86,18 +86,9 @@ function displayCards() {
                 let tStamp = uYear + "/" + uMonth + "/" + uDay;
                 let newcard = cardTemplate.content.cloneNode(true);
 
-                // db.collection("currency").doc(uCurrencyType).get()
-                //     .then(symb => {
-                //         symbol = symb.data().moneySymbol;
-                //         newcard = cardTemplate.content.cloneNode(true);
-                //         console.log("Monkey Add)");
-                //         newcard.querySelector('.card-pay').innerHTML = "dddd" + symbol + Math.trunc(uExpense);
-                //         console.log(symbol);
-                //     });
-
                 newcard.querySelector('#card-doc-ID').innerHTML = uDocID;
                 newcard.querySelector('.card-title').innerHTML = uTitle;
-                newcard.querySelector('.card-pay').innerHTML = Math.trunc(uExpense);
+                newcard.querySelector('.card-pay').innerHTML = uExpense;
                 newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
                 newcard.querySelector('.card-pay-type').innerHTML = uPayType;
                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
@@ -174,19 +165,13 @@ function editExpense(clicked) {
         expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
         expenseRow.querySelector('.card-title').innerHTML = "<input type=\"text\" pattern=\"[A-Za-z]{1,20}\" value=\"" + documentName + "\" required>";  
         expenseRow.querySelector('.card-pay').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" value=\"" + documentPay + "\" required>";  
-        selected.parentNode.replaceChild(expenseRow, selected);
+        selected.parentNode.replaceWith(expenseRow);
     });
 }
 
 function deleteExpense(clicked) {
     var selected = clicked.parentNode;
-    let docID = selected.querySelector('#card-doc-ID').innerHTML;
-    currentUser.collection("expenses").doc(docID).delete().then(() => {
-        console.log("Expense deleted!")
-    })
-    selected.remove();
-    //Reload page to properly refresh everything
-    window.location.reload();
+    selected.parentNode.remove();
 }
 
 function submitExpense(clicked) {
@@ -194,13 +179,11 @@ function submitExpense(clicked) {
     let docID = selected.querySelector('#card-doc-ID').innerHTML;
     let expenseTemplate = document.getElementById("expenseCardTemplate");
     let documentName = selected.querySelector('.card-title').querySelector('input').value;
-    let documentPay = selected.querySelector('.card-pay').querySelector('input').value;
+    let documentPay = parseFloat(selected.querySelector('.card-pay').querySelector('input').value).toFixed(2);
     let documentCurrency = document.getElementById("currency").value;
     documentCurrency = documentCurrency.replace(/[^A-Za-z]/g, "")
     let documentPayType = document.getElementById("type").value;
     let documentPayCategory = document.getElementById("category").value;
-    let documentTimeStamp = selected.querySelector('#card-timestamp').innerHTML;
-    console.log(documentTimeStamp);
     currentUser.collection("expenses").doc(docID).set({
         name: documentName,
         expense: documentPay,
@@ -209,16 +192,24 @@ function submitExpense(clicked) {
         paymentType: documentPayType
     }, {merge: true})
     let expenseRow = expenseTemplate.content.cloneNode(true);
-    expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
-    expenseRow.querySelector('.card-title').innerHTML = documentName;
-    expenseRow.querySelector('.card-pay').innerHTML = documentPay;
-    expenseRow.querySelector('.card-currency').innerHTML = documentCurrency;
-    expenseRow.querySelector('.card-pay-type').innerHTML = documentPayType;
-    expenseRow.querySelector('.card-pay-category').innerHTML = documentPayCategory;
-    expenseRow.querySelector('#card-timestamp').innerHTML = documentTimeStamp;
-    selected.replaceWith(expenseRow, selected);
-}
 
-function refresh() {
-    window.location.reload();
+    // Call firebase once again to grab timestamp. HTML returns empty string for some reason.
+    currentUser.collection("expenses").doc(docID).get()
+        .then(doc => {
+            uDateAdded = doc.data().dateAdded.toDate().getDate();
+            uYear = doc.data().dateAdded.toDate().getFullYear();
+            uMonth = doc.data().dateAdded.toDate().getMonth();
+            uDay = doc.data().dateAdded.toDate().getDate();
+            //Format date to YY/MM/DD
+            let tStamp = uYear + "/" + uMonth + "/" + uDay;
+            expenseRow = expenseTemplate.content.cloneNode(true);
+            expenseRow.querySelector('#card-timestamp').innerHTML = tStamp;
+            expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
+            expenseRow.querySelector('.card-title').innerHTML = documentName;
+            expenseRow.querySelector('.card-pay').innerHTML = documentPay;
+            expenseRow.querySelector('.card-currency').innerHTML = documentCurrency;
+            expenseRow.querySelector('.card-pay-type').innerHTML = documentPayType;
+            expenseRow.querySelector('.card-pay-category').innerHTML = documentPayCategory;
+            selected.parentNode.replaceWith(expenseRow);
+        });
 }
