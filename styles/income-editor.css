@@ -38,13 +38,17 @@
     border: green;
 }
 
+#cards-go-here{
+    display: -webkit-inline-flex !important;
+}
+
 #currency, #type{
     margin-left: 30px;
     text-align: center;
 }
 
 #source{
-margin-left: 55px;
-text-align: center;
+    margin-left: 55px;
+    text-align: center;
 }
 
