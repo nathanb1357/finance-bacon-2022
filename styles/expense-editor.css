@@ -178,3 +178,15 @@ p.card-pay-type{
 #displayExpenses {
     margin-top: 500px;
 }
+
+.dropdown-currency{
+    text-align: center;
+}
+
+#currency, #type{
+    margin-left: 30px;
+}
+
+#category{
+    margin-left: 50px;
+}
