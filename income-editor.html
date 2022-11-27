@@ -36,10 +36,84 @@
 </head>
 
 <body>
+    <!--Templates-->
+    <!-- Templates for general use, not displayed -->
+    <template id="currency-template">
+        <option class="option-template"></option>
+    </template>
+    
+    <!-- Type Template -->
+    <template id="type-template">
+        <option class="option-template-2"></option>
+    </template>
+    
+    <!-- Source Template -->
+    <template id="source-template">
+        <option class="option-template-3"></option>
+    </template>
+    
+    <template id="incomeCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-doc-ID" hidden="hidden">Card ID</p>
+                <h5 class="card-title">Card title</h5>
+                <p class="card-timestamp"></p>
+                <hr>
+                <p class="card-inc"></p>
+                <p class="card-currency"></p>
+                <p class="card-currency-conv" hidden="hidden"></p>
+                <p class="card-inc-type"></p>
+                <p class="card-inc-category"></p>
+                <a class="btn btn-primary card-href expButton" onclick="editIncome(this)">Edit</a>
+                <a class="btn btn-primary card-href expButton" onclick="deleteIncome(this)">Delete</a>
+            </div>
+        </div>
+    </template>
+
+    <template id="incomeCardTemplate-edit">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-doc-ID" hidden="hidden">Card ID</p>
+                <h5 class="card-title">Card title</h5>
+                <hr>
+                <p class="card-inc"></p>
+                <form id="edit-form">
+                    <div class="dropdown-currency card-currency">
+                        <div style="margin-bottom: 10px">Currency</div>
+                        <select id="currency" class="form-select w-75" aria-label="Currency"></select>
+                    </div>
+        
+                    <div class="dropdown-type">
+                        <div style="margin-bottom: 10px">Income Type</div>
+                        <select id="type" class="form-select w-75" aria-label="Income Type"></select>
+                    </div> 
+
+                    <div class="dropdown-source">
+                        <div style="margin-bottom: 10px">Income Source</div>
+                        <select id="source" class="form-select w-50" aria-label="Income Category"></select>
+                    </div>
+                </form>
+                <a class="btn btn-primary card-href expButton" onclick="submitIncome(this)">Submit</a>
+                <a class="btn btn-primary card-href expButton" onclick="deleteIncome(this)">Delete</a>
+            </div>
+        </div>
+    </template>
+
     <!-- Navbar Template -->
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Content Goes Here! -->
+    <div id="cardGalleryOuter" class="cardGallery">
+        <h1 id="incomeHeading">Edit Income</h1>
+        <hr>
+
+        <!-- Here is container for cards  -->
+        <div class="cardGallery">
+            <div id="cards-go-here" class="row row-cols-auto">
+            </div>
+        </div>
+    </div>
+    
 
     <!-- Footer Template -->
     <nav id="footerPlaceholder"></nav>

@@ -55,11 +55,11 @@
     <template id="expenseCardTemplate">
         <div class="card py-2 mx-2" style="width: 18rem;">
             <div class="card-body">
-                <p id="card-doc-ID" class=".d-none" hidden="hidden">Card ID</p>
+                <p class="card-doc-ID" hidden="hidden">Card ID</p>
                 <h5 class="card-title">Card title</h5>
-                <p id="card-timestamp"></p>
+                <p class="card-timestamp"></p>
                 <hr>
-                <p id="card-pay"></p>
+                <p class="card-pay"></p>
                 <p class="card-currency"></p>
                 <p class="card-currency-conv" hidden="hidden"></p>
                 <p class="card-pay-type"></p>
@@ -73,15 +73,15 @@
     <template id="expenseCardTemplate-edit">
         <div class="card py-2 mx-2" style="width: 18rem;">
             <div class="card-body">
-                <p id="card-doc-ID" class=".d-none" hidden="hidden">Card ID</p>
+                <p class="card-doc-ID" hidden="hidden">Card ID</p>
                 <h5 class="card-title">Card title</h5>
-                <p id="card-timestamp"></p>
+                <p class="card-timestamp"></p>
                 <hr>
-                <p id="card-pay"></p>
+                <p class="card-pay"></p>
                 <form id="edit-form">
                     <div class="dropdown-currency card-currency">
                         <div style="margin-bottom: 10px">Currency</div>
-                        <select id="currency" class="form-select w-75" aria-label="Currency" onchange="autoCurrencyConvert(this)"></select>
+                        <select id="currency" class="form-select w-75" aria-label="Currency"></select>
                     </div>
         
                     <div class="dropdown-type card-pay-type">

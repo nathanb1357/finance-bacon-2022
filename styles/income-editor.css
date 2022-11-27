@@ -32,3 +32,8 @@
 /*************************/
 /* Custom CSS Goes Here! */
 /*************************/
+#cardGalleryOuter {
+    margin-top: 90px;
+    text-align: center;
+    border: green;
+}

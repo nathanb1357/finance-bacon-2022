@@ -107,15 +107,15 @@ function displayCards() {
                 //     document.getElementById("cards-go-here").appendChild(newcard);
                 // });
 
-                newcard.querySelector('#card-doc-ID').innerHTML = uDocID;
+                newcard.querySelector('.card-doc-ID').innerHTML = uDocID;
                 newcard.querySelector('.card-title').innerHTML = uTitle;
                 newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
                 newcard.querySelector('.card-currency-conv').innerHTML = uCurrConv;
                 // Display the correct value according to currency
-                newcard.querySelector('#card-pay').innerHTML = (uExpense * uCurrConv).toFixed(2);
+                newcard.querySelector('.card-pay').innerHTML = (uExpense * uCurrConv).toFixed(2);
                 newcard.querySelector('.card-pay-type').innerHTML = uPayType;
                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
-                newcard.querySelector('#card-timestamp').innerHTML = tStamp;
+                newcard.querySelector('.card-timestamp').innerHTML = tStamp;
 
                 //give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "cTitle" + i);
@@ -176,18 +176,18 @@ function getCategory() {
 
 function editExpense(clicked) {
     var selected = clicked.parentNode;
-    let docID = selected.querySelector('#card-doc-ID').innerHTML;
+    let docID = selected.querySelector('.card-doc-ID').innerHTML;
     let documentName = selected.querySelector('.card-title').innerHTML;
-    let documentPay = selected.querySelector('#card-pay').innerHTML;
+    let documentPay = selected.querySelector('.card-pay').innerHTML;
     let expenseTemplate = document.getElementById("expenseCardTemplate-edit");
     currentUser.collection("expenses").doc(docID).get().then( () => {
         getCurrency();
         getType();
         getCategory();
         let expenseRow = expenseTemplate.content.cloneNode(true);
-        expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
+        expenseRow.querySelector('.card-doc-ID').innerHTML = docID;
         expenseRow.querySelector('.card-title').innerHTML = "<input type=\"text\" pattern=\"[A-Za-z]{1,20}\" value=\"" + documentName + "\" required>";  
-        expenseRow.querySelector('#card-pay').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" value=\"" + documentPay + "\" required>";  
+        expenseRow.querySelector('.card-pay').innerHTML = "<input type=\"number\" pattern=\"[1-9]{1,3}\" value=\"" + documentPay + "\" required>";  
         selected.parentNode.replaceWith(expenseRow);
     });
 }
@@ -195,7 +195,7 @@ function editExpense(clicked) {
 function deleteExpense(clicked) {
     var selected = clicked.parentNode;
 
-    let docID = selected.querySelector('#card-doc-ID').innerHTML;
+    let docID = selected.querySelector('.card-doc-ID').innerHTML;
     currentUser.collection("expenses").doc(docID).delete();
 
     selected.parentNode.remove();
@@ -203,10 +203,10 @@ function deleteExpense(clicked) {
 
 function submitExpense(clicked) {
     var selected = clicked.parentNode;
-    let docID = selected.querySelector('#card-doc-ID').innerHTML;
+    let docID = selected.querySelector('.card-doc-ID').innerHTML;
     let expenseTemplate = document.getElementById("expenseCardTemplate");
     let documentName = selected.querySelector('.card-title').querySelector('input').value;
-    let documentPay = selected.querySelector('#card-pay').querySelector('input').value;
+    let documentPay = selected.querySelector('.card-pay').querySelector('input').value;
     let documentCurrency = document.getElementById("currency").value;
     documentCurrency = documentCurrency.replace(/[^A-Za-z]/g, "")
     let documentPayType = document.getElementById("type").value;
@@ -237,11 +237,11 @@ function submitExpense(clicked) {
             //Format date to YY/MM/DD
             let tStamp = uYear + "/" + uMonth + "/" + uDay;
             expenseRow = expenseTemplate.content.cloneNode(true);
-            expenseRow.querySelector('#card-timestamp').innerHTML = tStamp;
-            expenseRow.querySelector('#card-doc-ID').innerHTML = docID;
+            expenseRow.querySelector('.card-timestamp').innerHTML = tStamp;
+            expenseRow.querySelector('.card-doc-ID').innerHTML = docID;
             expenseRow.querySelector('.card-title').innerHTML = documentName;
             //Display base value multiplied by currency's multiplier
-            expenseRow.querySelector('#card-pay').innerHTML = (uPay * currConv).toFixed(2);
+            expenseRow.querySelector('.card-pay').innerHTML = (uPay * currConv).toFixed(2);
             expenseRow.querySelector('.card-currency').innerHTML = documentCurrency;
             expenseRow.querySelector('.card-currency-conv').innerHTML = currConv;
             expenseRow.querySelector('.card-pay-type').innerHTML = documentPayType;
