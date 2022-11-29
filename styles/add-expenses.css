@@ -44,14 +44,13 @@
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: repeat(5, 1fr);
-    margin-left: auto;
-    margin-right: auto;
     align-items: center;
+    text-align: center;
 }
 
 #expenseName {
-    margin-left: 13%;
-    margin-right: 13%;
+    margin-left: 25%;
+    margin-right: 25%;
     text-align: center;
 }
 
@@ -69,13 +68,13 @@
     grid-column: 2;
     grid-row: 1;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
 
 .dropdown-type{
     grid-column: 3;
     grid-row: 1;
-    margin: 10px;
+    margin: 20px;
     text-align: center;
 }
 
@@ -83,7 +82,7 @@
     grid-column: 2 / span 2;
     grid-row: 2;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
 
 .dropdown-category{
@@ -91,7 +90,7 @@
     grid-row: 3;
     display: block;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }
 
 #category{
@@ -103,5 +102,5 @@
     grid-column: 2 / span 2;
     grid-row: 5;
     text-align: center;
-    margin: 10px;
+    margin: 20px;
 }

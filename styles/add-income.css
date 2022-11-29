@@ -48,20 +48,21 @@
     text-align: center;
 }
 
-#currencyHeading {
-   text-align: center;
-   display: block;
-}
-
 #incomeName {
-    margin-left: 13%;
-    margin-right: 13%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
 }
 
 .form-select {
     margin-left: 13%;
     margin-right: 13%;
 }
+
+#currencyHeading {
+    text-align: center;
+    display: block;
+ }
 
 .dropdown-currency{
     grid-column: 2;

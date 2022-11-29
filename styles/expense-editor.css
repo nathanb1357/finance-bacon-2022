@@ -28,41 +28,6 @@
     flex-basis: auto
 }
 
-.navbar-expand-lg .navbar-toggler {
-    display: none
-}
-
-.navbar-expand-lg .offcanvas-header {
-    display: none
-}
-
-.navbar-expand-lg .offcanvas {
-    position: inherit;
-    bottom: 0;
-    z-index: 1000;
-    flex-grow: 1;
-    visibility: visible !important;
-    background-color: transparent;
-    border-right: 0;
-    border-left: 0;
-    transition: none;
-    transform: none
-}
-
-.navbar-expand-lg .offcanvas-bottom,
-.navbar-expand-lg .offcanvas-top {
-    height: auto;
-    border-top: 0;
-    border-bottom: 0
-}
-
-.navbar-expand-lg .offcanvas-body {
-    display: flex;
-    flex-grow: 0;
-    padding: 0;
-    overflow-y: visible
-}
-
 /*******************/
 /* Navbar template */
 /*******************/
@@ -81,25 +46,37 @@
 /* Custom CSS Goes Here! */
 /*************************/
 
-#cardGalleryOuter {
-    margin-top: 90px;
-    text-align: center;
-    border: green;
-}
-
-#cards-go-here{
-    display: -webkit-inline-flex !important;
-}
-
-.expButton {
-    align-items: center;
-}
-
-#expense {
+#edit-expenses {
     margin-top: 100px;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 100px;
+}
+
+#cardGalleryOuter {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.heading{
+    text-align: center;
+}
+
+#cards-go-here{
+    display: flex;
+    gap: 10px;
+    width: 82%;
+    margin-left: 9%;
+    margin-right: 9%;
+}
+
+.card {
+    margin-top: 50px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.532);
+}
+
+.expButton {
+    align-items: center;
 }
 
 p.card-currency{
@@ -115,7 +92,6 @@ p.card-pay-type{
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: repeat(5, 1fr);
-
     margin-left: auto;
     margin-right: auto;
     align-items: center;
@@ -168,14 +144,6 @@ p.card-pay-type{
     grid-row: 5;
     text-align: center;
     margin: 10px;
-}
-
-#displayExpenses {
-    margin-top: 500px;
-}
-
-.dropdown-currency{
-    text-align: center;
 }
 
 #currency, #type{

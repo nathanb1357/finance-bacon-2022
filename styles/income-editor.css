@@ -32,14 +32,105 @@
 /*************************/
 /* Custom CSS Goes Here! */
 /*************************/
-#cardGalleryOuter {
-    margin-top: 90px;
+
+#edit-income {
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 100px;
+}
+
+.heading{
     text-align: center;
-    border: green;
+}
+
+#cardGalleryOuter {
+    margin: 0 auto;
+    text-align: center;
 }
 
 #cards-go-here{
-    display: -webkit-inline-flex !important;
+    display: flex;
+    gap: 10px;
+    width: 82%;
+    margin-left: 9%;
+    margin-right: 9%;
+}
+
+.card {
+    margin-top: 50px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.532);
+}
+
+.expButton {
+    align-items: center;
+}
+
+p.card-currency{
+    float: left;
+    padding-left: 50px;
+}
+
+p.card-pay-type{
+    padding-right: 5px;
+}
+
+#expense-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+#incomeHeading {
+    text-align: center;
+    display: block;
+}
+
+.dropdown-currency {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+    margin: 10px;
+}
+
+.dropdown-type {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 10px;
+    text-align: center;
+}
+
+.amount {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    text-align: center;
+    margin: 10px;
+}
+
+.dropdown-category {
+    grid-column: 2 / span 2;
+    grid-row: 4;
+    display: block;
+    text-align: center;
+    margin: 10px;
+}
+
+.date {
+    grid-column: 2 / span 2;
+    grid-row: 3;
+    display: block;
+    text-align: center;
+    margin: 10px;
+}
+
+#submit {
+    grid-column: 2 / span 2;
+    grid-row: 5;
+    text-align: center;
+    margin: 10px;
 }
 
 #currency, #type{
@@ -47,8 +138,8 @@
     text-align: center;
 }
 
-#source{
-    margin-left: 55px;
+#category{
+    margin-left: 50px;
     text-align: center;
 }
 
