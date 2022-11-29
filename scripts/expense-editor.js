@@ -27,7 +27,9 @@ firebase.auth().onAuthStateChanged(user => {
 function displayCards() {
     let cardTemplate = document.getElementById("expenseCardTemplate");
 
-    currentUser.collection("expenses").get()
+    currentUser.collection("expenses")
+        .orderBy("dateAdded", "desc")
+        .get()
         .then(snap => {
             // var i = 1;  //if you want to use commented out section
             snap.forEach(doc => { //iterate thru each doc

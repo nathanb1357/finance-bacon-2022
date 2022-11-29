@@ -7,7 +7,9 @@ function checkLogin(){
             currentUser = db.collection("users").doc(user.uid);
             let cardTemplate = document.getElementById("incomeCardTemplate");
 
-            currentUser.collection("income").get()
+            currentUser.collection("income")
+                .orderBy("dateAdded", "desc")
+                .get()
                 .then(snap => {
                     // var i = 1;  //if you want to use commented out section
                     snap.forEach(doc => { //iterate thru each doc
