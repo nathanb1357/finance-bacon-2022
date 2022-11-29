@@ -26,8 +26,6 @@ function budgetLink(){
                 if (sub.docs.length == 0) {
                     console.log($('#budgetLinkPlaceholder').load('./text/budget-link.html'));
                     console.log($('#footerPlaceholder').html(''));
-                } else {
-                    console.log($('#photoPlaceholder').load('./text/homepage.html'));
                 }
             })
             currentUser.collection("sources").limit(1).get().then(sub => {
