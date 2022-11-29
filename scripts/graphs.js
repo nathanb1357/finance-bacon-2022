@@ -1,13 +1,14 @@
 var currentUser;
-var incomeSum = 0;
 var userCurrency;
 var currencyPercent;
 var moneySymbol;
 var xValues = [];
 var yValues = [];
+var expenseSum = 0;
+var incomeSum = 0;
 var y;
 var x;
-var barColors = ["red", "yellow", "blue", "green", "orange", "purple", "grey"];
+var barColors = ["red", "yellow", "blue", "green", "orange", "purple", "grey", "red", "yellow", "blue", "green", "orange", "purple", "grey"];
 
 function checkLogin(){
     firebase.auth().onAuthStateChanged(user => {
@@ -22,7 +23,19 @@ function checkLogin(){
                     currencyPercent = currency.data().conversionPercent;
                     moneySymbol = currency.data().moneySymbol;
                     document.getElementById("name-goes-here").innerText = username;
-                    getIncomeSum();
+                    const promise = new Promise(function(resolve, reject){
+                        setTimeout(function(){resolve(expenseSum);}, 200);
+                        getExpenseSum();
+                        getIncomeSum();
+                    })
+                    promise.then(expenseSum => {
+                        if (incomeSum < expenseSum){
+                            console.log($('#noData').load('./text/expense-error.html'));
+                            console.log($('#graphs').html(''));
+                        } else {
+                            addExpected();
+                        }
+                    })
                 });
             })
         } else {
@@ -38,9 +51,20 @@ function getIncomeSum(){
             incomeSum = incomeSum + doc.data().income;
         })
         if (incomeSum == NaN) {
-            displayIncomeLink();
-        } else {
-            addExpected();
+            console.log($('#noData').load('./text/no-data.html'));
+            console.log($('#graphs').html(''));
+        }
+    })
+}
+
+function getExpenseSum(){
+    currentUser.collection("expenses").get().then(allExpenses => {
+        allExpenses.forEach(doc => {
+            expenseSum = expenseSum + doc.data().expense;
+        })
+        if (expenseSum == NaN) {
+            console.log($('#noData').load('./text/no-data.html'));
+            console.log($('#graphs').html(''));
         }
     })
 }
@@ -94,7 +118,7 @@ function addActual(){
 
         var promise1 = new Promise(function(resolve, reject) {
             y = xValues.map((x) => {
-                setTimeout(function(){ resolve(yValues); }, 300);
+                setTimeout(function(){resolve(yValues);}, 300);
                 let yAdd = 0;
                 currentUser.collection("expenses").get().then(allExpenses => {
                     allExpenses.forEach(doc => {   

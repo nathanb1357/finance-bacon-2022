@@ -57,3 +57,17 @@ canvas {
 h3{
     margin-bottom: 20px;
 }
+
+.card {
+    padding: 40px;
+}
+
+.btn-primary{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.btn-secondary{
+    width: 60%;
+    margin: 0 auto;
+}
