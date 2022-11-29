@@ -32,6 +32,9 @@ function checkLogin(){
                         if (incomeSum < expenseSum){
                             console.log($('#noData').load('./text/expense-error.html'));
                             console.log($('#graphs').html(''));
+                        } else if (incomeSum == 0 || expenseSum == 0){
+                            console.log($('#noData').load('./text/no-data.html'));
+                            console.log($('#graphs').html(''));
                         } else {
                             addExpected();
                         }
@@ -50,10 +53,6 @@ function getIncomeSum(){
         allIncome.forEach(doc => {
             incomeSum = incomeSum + doc.data().income;
         })
-        if (incomeSum == NaN) {
-            console.log($('#noData').load('./text/no-data.html'));
-            console.log($('#graphs').html(''));
-        }
     })
 }
 
@@ -62,10 +61,6 @@ function getExpenseSum(){
         allExpenses.forEach(doc => {
             expenseSum = expenseSum + doc.data().expense;
         })
-        if (expenseSum == NaN) {
-            console.log($('#noData').load('./text/no-data.html'));
-            console.log($('#graphs').html(''));
-        }
     })
 }
 
