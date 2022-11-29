@@ -37,7 +37,7 @@
 
 #home{
     margin-top: 50px;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
 }
 
 .card{
@@ -51,7 +51,6 @@
 
 #photoPlaceholder{
     width: 70%;
-    height: 450px;
     margin: 0 auto;
 }
 
@@ -59,14 +58,4 @@
     text-align: center;
     margin-bottom: 50px;
     font-size: xx-large;
-}
-
-#photo{
-    width: 70%;
-    height: 450px;
-    background-image: url("../images/bacon-photo.jpg");
-    background-size: cover;
-    margin: 0 auto;
-    padding-bottom: 50px;
-    box-shadow: 1px 1px 5px black;
 }
