@@ -2,10 +2,10 @@
 *.logs
 node_modules/
 .vscode/
-./scripts/firebaseAPI_TEAM14.js
-./firebasesrc
-./firebase.json
-./firestore.indexes.json
-./firestore.rules
-./storage.rules
-./.firebase
+scripts/firebaseAPI_TEAM14.js
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
+.firebase/
