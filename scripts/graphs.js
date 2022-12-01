@@ -10,6 +10,7 @@ var y;
 var x;
 var barColors = ["red", "yellow", "blue", "green", "orange", "purple", "grey", "red", "yellow", "blue", "green", "orange", "purple", "grey"];
 
+// Checks if user is signed in and sets up the page.
 function checkLogin(){
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -48,6 +49,7 @@ function checkLogin(){
 }
 checkLogin();
 
+// Gets the sum of all user income.
 function getIncomeSum(){
     currentUser.collection("income").get().then(allIncome => {
         allIncome.forEach(doc => {
@@ -56,6 +58,7 @@ function getIncomeSum(){
     })
 }
 
+// Gets the sum of all user expenses.
 function getExpenseSum(){
     currentUser.collection("expenses").get().then(allExpenses => {
         allExpenses.forEach(doc => {
@@ -64,6 +67,7 @@ function getExpenseSum(){
     })
 }
 
+// Creates the expected expenses graph.
 function addExpected(){
     const expectedExpenses = document.getElementById("expectedExpenses");
     let ySum = 0;
@@ -99,7 +103,7 @@ function addExpected(){
     })
 }
 
-
+// Creates the actual expenses graph.
 function addActual(){
     const actualExpenses = document.getElementById("actualExpenses");
     let ySum = 0;
@@ -154,6 +158,7 @@ function addActual(){
     })
 }
 
+// Creates the expense categories graph.
 function addCategories(){
     const categoriesGraph = document.getElementById("categoriesGraph");
     yValues = [];
@@ -219,6 +224,7 @@ function addCategories(){
     })
 }
 
+// Creates the income sources graph
 function addSources(){
     const sourcesGraph = document.getElementById("sourcesGraph");
     xValues = [];

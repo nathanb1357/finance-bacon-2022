@@ -1,5 +1,6 @@
 var currentUser;
 
+// Creates premade income sources for the new user.
 function addBudget(){
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -29,8 +30,7 @@ function addBudget(){
 }
 addBudget();
 
-
-
+// Gets the sources from Firestore and displays them on the page.
 function getSources() {
     let budgetTemplate = document.getElementById("budget-template");
     let budgetGroup = document.getElementById("budget-group");
@@ -45,6 +45,7 @@ function getSources() {
         });
 }
 
+// Deletes the selected source from Firestore and from the page.
 function deleteSource(clicked) {
     var selected = clicked.parentNode;
     let documentName = selected.querySelector('.category-name').innerHTML;
@@ -54,6 +55,7 @@ function deleteSource(clicked) {
     selected.remove();
 }
 
+// Adds a new, editable source to the page.
 function addSource() {
     let budgetTemplate = document.getElementById("edit-template");
     let budgetGroup = document.getElementById("budget-group");
@@ -62,7 +64,7 @@ function addSource() {
     budgetGroup.appendChild(budgetRow);
 }
 
-
+// Turns the static table row into an form to be edited.
 function editSource(clicked) {
     var selected = clicked.parentNode;
     let documentName = selected.querySelector('.category-name').innerHTML;
@@ -74,6 +76,7 @@ function editSource(clicked) {
     });
 }
 
+// Submits the selected source to Firestore and changes its display to static.
 function submitSource(clicked) {
     var selected = clicked.parentNode;
     let budgetTemplate = document.getElementById("budget-template");

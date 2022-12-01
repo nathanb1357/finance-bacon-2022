@@ -13,9 +13,8 @@ var uPayType;
 var uDateAdded;
 var expenseContainer = document.getElementById("displayExpenses");
 
-
+// Check if a user is signed in:
 firebase.auth().onAuthStateChanged(user => {
-    // Check if a user is signed in:
     if (user) {
         currentUser = db.collection("users").doc(user.uid);
         displayCards();
@@ -24,15 +23,15 @@ firebase.auth().onAuthStateChanged(user => {
     }
 })
 
+// Displays each submitted expense form from Firestore to the page.
 function displayCards() {
     let cardTemplate = document.getElementById("expenseCardTemplate");
-
     currentUser.collection("expenses")
         .orderBy("dateAdded", "desc")
         .get()
         .then(snap => {
             // var i = 1;  //if you want to use commented out section
-            snap.forEach(doc => { //iterate thru each doc
+            snap.forEach(doc => {
                 uDocID = doc.id;
                 uTitle = doc.data().name;
                 uCurrencyType = doc.data().currencyType;
@@ -48,7 +47,7 @@ function displayCards() {
 
                 // code for grabbing conversion value, but is not working properly within this loop
                 // might use if can find solution --dont delete pls
-                //
+
                 // let currDB = db.collection("currency").doc(uCurrencyType);
                 // currDB.get().then(conversion => {
                 //     var currConv = conversion.data().conversionPercent;
@@ -61,7 +60,6 @@ function displayCards() {
                 //     newcard.querySelector('.card-pay-type').innerHTML = uPayType;
                 //     newcard.querySelector('.card-pay-category').innerHTML = uCategory;
                 //     newcard.querySelector('#card-timestamp').innerHTML = tStamp;
-
                 //     document.getElementById("cards-go-here").appendChild(newcard);
                 // });
 
@@ -69,24 +67,17 @@ function displayCards() {
                 newcard.querySelector('.card-title').innerHTML = uTitle;
                 newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
                 newcard.querySelector('.card-currency-conv').innerHTML = uCurrConv;
-                // Display the correct value according to currency
                 newcard.querySelector('.card-pay').innerHTML = (uExpense * uCurrConv).toFixed(2);
                 newcard.querySelector('.card-pay-type').innerHTML = uPayType;
                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
                 newcard.querySelector('.card-timestamp').innerHTML = tStamp;
-
-                //give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "cTitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "cText" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cImage" + i);
-
-                //attach to gallery
                 document.getElementById("cards-go-here").appendChild(newcard);
                 //i++;   //if you want to use commented out section
             });
         });
 }
 
+// Displays each possible currency option when editing the expense.
 function getCurrency() {
     db.collection("currency").get()
     .then(allCurrencies => {

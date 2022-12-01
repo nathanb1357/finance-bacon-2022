@@ -1,6 +1,7 @@
 var currentUser;
 var userCurrency;
 
+// Checks the selected display currency and displays it as already selected.
 function addProfile() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -17,8 +18,8 @@ function addProfile() {
 }
 addProfile();
 
+// Displays each currency on the dropdown menu.
 function getCurrency() {
-    var importantX = 1;
     let currencyTemplate = document.getElementById("currency-template");
     let currencyGroup = document.getElementById("currency-group");
     db.collection("currency").get()
@@ -35,6 +36,7 @@ function getCurrency() {
     })
 }
 
+// Submits the user selected display currency.
 function submitCurrency() {
     currInput = document.getElementById("currency-group").value;
     currInput = currInput.replace(/[^A-Za-z]/g, "")

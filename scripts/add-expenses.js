@@ -8,6 +8,7 @@ var currInput;
 var payType;
 var payCat;
 
+// Sets up the page if the user is logged in.
 function addExpensesHome() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -17,12 +18,14 @@ function addExpensesHome() {
             getType();
             getCategory();
         } else {
-            window.location.assign("index.html");    // No user is signed in.
+            // No user is signed in.
+            window.location.assign("index.html");
         }
     });
 }
-addExpensesHome(); //run the function
+addExpensesHome();
 
+// Displays the currency options on the page.
 function getCurrency() {
     let currencyTemplate = document.getElementById("currency-template");
     let currencyGroup = document.getElementById("currency");
@@ -38,6 +41,7 @@ function getCurrency() {
     })
 }
 
+// Displays the types of expenses on the page (Credit Card, Debit Card, etc).
 function getType() {
     let typeTemplate = document.getElementById("type-template");
     let typeGroup = document.getElementById("type");
@@ -53,6 +57,7 @@ function getType() {
     })
 }
 
+// Displays the user customized expense categories on the page.
 function getCategory() {
     let sourceTemplate = document.getElementById("category-template");
     let sourceGroup = document.getElementById("category");
@@ -68,6 +73,7 @@ function getCategory() {
     })  
 }
 
+// Submits the expense to the database when the user clicks the submit button.
 function addExpense() {
     expRef = currentUser.collection("expenses").doc();
     expName = document.getElementById("expenseName").value;
@@ -100,6 +106,7 @@ function addExpense() {
     }
 }
 
+// Cancels the form when the user clicks the cancel button.
 function cancelForm() {
     document.getElementById("expense-form").reset();
     document.getElementById("expenseName").value = "";

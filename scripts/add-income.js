@@ -7,6 +7,7 @@ var incCategory;
 var incAmount;
 var incConvert
 
+// Sets up the page if the user is logged in.
 function addIncomeHome() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -16,12 +17,14 @@ function addIncomeHome() {
             getType();
             getSource();
         } else {
-            window.location.assign("index.html");    // No user is signed in.
+            // No user is signed in.
+            window.location.assign("index.html");
         }
     });
 }
-addIncomeHome(); //run the function
+addIncomeHome();
 
+// Displays the currency options on the page.
 function getCurrency() {
     let currencyTemplate = document.getElementById("currency-template");
     let currencyGroup = document.getElementById("currency");
@@ -37,6 +40,7 @@ function getCurrency() {
     })
 }
 
+// Displays the types of income on the page (Credit Card, Debit Card, etc).
 function getType() {
     let typeTemplate = document.getElementById("type-template");
     let typeGroup = document.getElementById("type");
@@ -52,6 +56,7 @@ function getType() {
     })
 }
 
+// Displays the user customized income sources on the page.
 function getSource() {
     let sourceTemplate = document.getElementById("source-template");
     let sourceGroup = document.getElementById("source");
@@ -67,6 +72,7 @@ function getSource() {
     })  
 }
 
+// Submits the income to the database when the user clicks the submit button.
 function addIncome() {
     incRef = currentUser.collection("income").doc();
     incName = document.getElementById("incomeName").value;
@@ -99,6 +105,7 @@ function addIncome() {
     }
 }
 
+// Cancels the form when the user clicks the cancel button.
 function cancelForm() {
     document.getElementById("income-form").reset();
     document.getElementById("incomeName").value = "";

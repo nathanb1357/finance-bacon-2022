@@ -1,8 +1,8 @@
 var currentUser;
 
+// Check if a user is signed in:
 function checkLogin(){
     firebase.auth().onAuthStateChanged(user => {
-        // Check if a user is signed in:
         if (user) {
             currentUser = db.collection("users").doc(user.uid);
             getCategories();
@@ -13,8 +13,7 @@ function checkLogin(){
 }
 checkLogin();
 
-
-
+// Gets the categories from Firestore and displays them on the page.
 function getCategories() {
     let budgetTemplate = document.getElementById("budget-template");
     let budgetGroup = document.getElementById("budget-group");
@@ -31,6 +30,7 @@ function getCategories() {
         });
 }
 
+// Deletes the selected category from Firestore and from the page.
 function deleteCategory(clicked) {
     var selected = clicked.parentNode;
     let documentName = selected.querySelector('.category-name').innerHTML;
@@ -40,6 +40,7 @@ function deleteCategory(clicked) {
     selected.remove();
 }
 
+// Deletes the selected category from Firestore and from the page.
 function addCategory() {
     let budgetTemplate = document.getElementById("edit-template");
     let budgetGroup = document.getElementById("budget-group");
@@ -49,7 +50,7 @@ function addCategory() {
     budgetGroup.appendChild(budgetRow);
 }
 
-
+// Turns the static table row into an form to be edited.
 function editCategory(clicked) {
     var selected = clicked.parentNode;
     let documentName = selected.querySelector('.category-name').innerHTML;
@@ -63,6 +64,7 @@ function editCategory(clicked) {
     });
 }
 
+// Submits the selected category to Firestore and changes its display to static.
 function submitCategory(clicked) {
     var selected = clicked.parentNode;
     let budgetTemplate = document.getElementById("budget-template");

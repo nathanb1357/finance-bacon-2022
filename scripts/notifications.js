@@ -3,8 +3,7 @@ var overspendWarn;
 var notifPush;
 var notifEmail;
 
-//var overspendWarning = false;
-
+// Checks firestore to see user options and displays on page
 function notificationSettings() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -38,6 +37,7 @@ function notificationSettings() {
 }
 notificationSettings(); //run the function
 
+// Toggles the overspending warning on the page and on Firestore
 function overSpendToggle() {
     if (overspendWarn == true) {
         overspendWarn = false;
@@ -58,6 +58,7 @@ function overSpendToggle() {
     }
 }
 
+// Toggles the push notifications on the page and on Firestore.
 function pushToggle() {
     if (notifPush == true) {
         notifPush = false;
@@ -75,6 +76,7 @@ function pushToggle() {
     }
 }
 
+// Toggles the email notifications on the page and on Firestore.
 function emailToggle() {
     if (notifEmail == true) {
         notifEmail = false;
