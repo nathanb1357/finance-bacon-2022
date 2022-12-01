@@ -3,3 +3,9 @@
 node_modules/
 .vscode/
 ./scripts/firebaseAPI_TEAM14.js
+./firebasesrc
+./firebase.json
+./firestore.indexes.json
+./firestore.rules
+./storage.rules
+./.firebase
