@@ -11,7 +11,6 @@ function checkLogin(){
                 .orderBy("dateAdded", "desc")
                 .get()
                 .then(snap => {
-                    // var i = 1;  //if you want to use commented out section
                     snap.forEach(doc => { //iterate thru each doc
                         uDocID = doc.id;
                         uTitle = doc.data().name;
@@ -26,19 +25,10 @@ function checkLogin(){
                         newcard.querySelector('.card-title').innerHTML = uTitle;
                         newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
                         newcard.querySelector('.card-currency-conv').innerHTML = uCurrConv;
-                        // Display the correct value according to currency
                         newcard.querySelector('.card-inc').innerHTML = (uIncome * uCurrConv).toFixed(2);
                         newcard.querySelector('.card-inc-type').innerHTML = uIncType;
                         newcard.querySelector('.card-inc-category').innerHTML = uCategory;
-        
-                        //give unique ids to all elements for future use
-                        // newcard.querySelector('.card-title').setAttribute("id", "cTitle" + i);
-                        // newcard.querySelector('.card-text').setAttribute("id", "cText" + i);
-                        // newcard.querySelector('.card-image').setAttribute("id", "cImage" + i);
-        
-                        //attach to gallery
                         document.getElementById("cards-go-here").appendChild(newcard);
-                        //i++;   //if you want to use commented out section
                     });
                 });
             
@@ -122,6 +112,7 @@ function submitIncome(clicked) {
     documentCurrency = documentCurrency.replace(/[^A-Za-z]/g, "")
     let documentIncType = document.getElementById("type").value;
     let documentIncCategory = document.getElementById("source").value;
+    
     //Grab conversion percentage
     let currDB = db.collection("currency").doc(documentCurrency);
     currDB.get().then(conversion => {
@@ -141,10 +132,12 @@ function submitIncome(clicked) {
         .then(doc => {
             uInc = parseFloat(doc.data().income);
             currConv = doc.data().convPerc;
+
             //Format date to YY/MM/DD
             incomeRow = incomeTemplate.content.cloneNode(true);
             incomeRow.querySelector('.card-doc-ID').innerHTML = docID;
             incomeRow.querySelector('.card-title').innerHTML = documentName;
+
             //Display base value multiplied by currency's multiplier
             incomeRow.querySelector('.card-inc').innerHTML = (uInc * currConv).toFixed(2);
             incomeRow.querySelector('.card-currency').innerHTML = documentCurrency;

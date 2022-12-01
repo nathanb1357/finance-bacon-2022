@@ -30,7 +30,6 @@ function displayCards() {
         .orderBy("dateAdded", "desc")
         .get()
         .then(snap => {
-            // var i = 1;  //if you want to use commented out section
             snap.forEach(doc => {
                 uDocID = doc.id;
                 uTitle = doc.data().name;
@@ -45,24 +44,6 @@ function displayCards() {
                 let tStamp = uYear + "/" + uMonth + "/" + uDay;
                 let newcard = cardTemplate.content.cloneNode(true);
 
-                // code for grabbing conversion value, but is not working properly within this loop
-                // might use if can find solution --dont delete pls
-
-                // let currDB = db.collection("currency").doc(uCurrencyType);
-                // currDB.get().then(conversion => {
-                //     var currConv = conversion.data().conversionPercent;
-                //     var currDisplay = uExpense * currConv;
-                //     let newcard = cardTemplate.content.cloneNode(true);
-                //     newcard.querySelector('#card-doc-ID').innerHTML = uDocID;
-                //     newcard.querySelector('.card-title').innerHTML = uTitle;
-                //     newcard.querySelector('#card-pay').innerHTML = currDisplay;
-                //     newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
-                //     newcard.querySelector('.card-pay-type').innerHTML = uPayType;
-                //     newcard.querySelector('.card-pay-category').innerHTML = uCategory;
-                //     newcard.querySelector('#card-timestamp').innerHTML = tStamp;
-                //     document.getElementById("cards-go-here").appendChild(newcard);
-                // });
-
                 newcard.querySelector('.card-doc-ID').innerHTML = uDocID;
                 newcard.querySelector('.card-title').innerHTML = uTitle;
                 newcard.querySelector('.card-currency').innerHTML = uCurrencyType;
@@ -72,7 +53,6 @@ function displayCards() {
                 newcard.querySelector('.card-pay-category').innerHTML = uCategory;
                 newcard.querySelector('.card-timestamp').innerHTML = tStamp;
                 document.getElementById("cards-go-here").appendChild(newcard);
-                //i++;   //if you want to use commented out section
             });
         });
 }
@@ -87,7 +67,8 @@ function getCurrency() {
             let currencyTemplate = document.getElementById("currency-template");
             let currencyGroup = document.getElementById("currency");
             let currencyRow = currencyTemplate.content.cloneNode(true);
-            currencyRow.querySelector(".option-template").innerHTML = "<option id=\"" + acronym + "\" value=\"" + acronym + "\">" + symbol + " (" + acronym + ")</option>"
+            currencyRow.querySelector(".option-template").innerHTML = "<option id=\"" + acronym + "\" value=\"" 
+                + acronym + "\">" + symbol + " (" + acronym + ")</option>";
             currencyGroup.appendChild(currencyRow);
         })
     })
@@ -160,6 +141,7 @@ function submitExpense(clicked) {
     documentCurrency = documentCurrency.replace(/[^A-Za-z]/g, "")
     let documentPayType = document.getElementById("type").value;
     let documentPayCategory = document.getElementById("category").value;
+
     //Grab conversion percentage
     let currDB = db.collection("currency").doc(documentCurrency);
     currDB.get().then(conversion => {
@@ -183,12 +165,14 @@ function submitExpense(clicked) {
             uDay = doc.data().dateAdded.toDate().getDate();
             uPay = parseFloat(doc.data().expense);
             currConv = doc.data().convPerc;
+
             //Format date to YY/MM/DD
             let tStamp = uYear + "/" + uMonth + "/" + uDay;
             expenseRow = expenseTemplate.content.cloneNode(true);
             expenseRow.querySelector('.card-timestamp').innerHTML = tStamp;
             expenseRow.querySelector('.card-doc-ID').innerHTML = docID;
             expenseRow.querySelector('.card-title').innerHTML = documentName;
+
             //Display base value multiplied by currency's multiplier
             expenseRow.querySelector('.card-pay').innerHTML = (uPay * currConv).toFixed(2);
             expenseRow.querySelector('.card-currency').innerHTML = documentCurrency;
