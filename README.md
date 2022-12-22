@@ -5,7 +5,7 @@
 * [Contents](#content)
 
 ## General Info
-* Hi my name is Nathan. I have no idea what I'm doing
+* Hi my name is Nathan. I'm excited to work on this project because it will help me to improve my skills.
 * Hi my name is Ben. I'm excited about this project because...
 * Hi my name is Charles. I'm exited about this project because
 
